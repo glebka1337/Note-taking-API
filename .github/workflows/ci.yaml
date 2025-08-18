@@ -54,6 +54,6 @@ jobs:
           docker compose -f docker-compose.test.yml logs
 
       - name: Cleanup
-        if: always
+        if: always()
         run: |
           docker compose -f docker-compose.test.yml down --volumes --remove-orphans
