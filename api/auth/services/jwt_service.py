@@ -50,6 +50,15 @@ async def validate_refresh_token(
 ) -> Annotated[dict, "Payload of the token"]:
     """
     Validate a refresh token by checking if it exists in Redis and with jwt.decode
+    Returns:
+        dict: Payload of the token
+        example payload:
+        {
+            'jti': str(uuid4()),
+            'iat': int(datetime.now(timezone.utc).timestamp()),
+            'exp': int(expires_at.timestamp()),
+            'user_id': ustr(user_id)
+        }
     """
     
     try:

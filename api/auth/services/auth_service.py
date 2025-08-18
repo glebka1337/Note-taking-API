@@ -1,12 +1,17 @@
 """
 Here will be auth service
 """
-from fastapi import HTTPException, status
+from fastapi import Depends, HTTPException, Header, status
 from api.auth.schemas import UserCreate, UserLogin, UserOut
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, or_
 from api.auth.security import get_password_hash, verify_password
+from api.db import get_session
 from api.models import User
+from redis.asyncio import Redis
+from typing import Annotated
+from api.auth.services.jwt_service import validate_refresh_token
+from api.redis_client import get_redis
 
 async def create_new_user(
     db: AsyncSession,
@@ -93,3 +98,63 @@ async def login_user(
             detail=detail
         )
     return UserOut(**user.model_dump())
+
+async def get_current_user(
+    refresh_token: Annotated[str, "Token to validate"] = Header(..., alias="Authorization"),
+    redis_client: Annotated[Redis, "Redis client"] = Depends(get_redis),
+    db: AsyncSession = Depends(get_session)
+) -> UserOut:
+    """
+    Returns current user by refresh token
+
+    Args:
+        refresh_token (Annotated[str, &quot;Token to validate&quot;]): jwt token 
+        redis_client (Annotated[Redis, &quot;Redis client&quot;]): redis client
+
+    Returns:
+        UserOut: pydantic model of user
+    """
+    
+    # Validate token 
+    
+    if not refresh_token.startswith("Bearer "):
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, "Invalid token format, use 'Bearer your_token' instead")
+    
+    payload = await validate_refresh_token(
+        refresh_token=refresh_token,
+        redis_client=redis_client
+    )
+    
+    # If token is valid, search for user profile in redis
+    
+    user_in_redis = await redis_client.get(f"user:{payload['user_id']}")
+    
+    # If user profile is in redis, return it
+    if user_in_redis:
+       return UserOut.model_validate_json(user_in_redis)
+   
+    # if user not found in redis, search for user in database
+    
+    user_in_db = await db.execute(
+        select(User).where(
+            User.id == int(payload["user_id"])
+        )
+    )
+    
+    # if user not found in database, raise error
+    
+    if user_in_db := user_in_db.scalar_one_or_none() == None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="No such user"
+        )
+    
+    # if user found in database, save it in redis and return it
+    
+    await redis_client.set(
+        name=f"user:{payload['user_id']}",
+        value=user_in_db.model_dump_json()
+    )
+    
+    
+    return UserOut.model_validate(user_in_db)

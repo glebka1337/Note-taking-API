@@ -1,7 +1,7 @@
 from datetime import timedelta
 from fastapi import APIRouter, HTTPException, Header, status, Depends
 from api.auth.schemas import UserCreate, UserLogin, UserOut
-from api.auth.services.auth_service import create_new_user, login_user
+from api.auth.services.auth_service import create_new_user, get_current_user, login_user
 from api.db import get_session
 from sqlalchemy.ext.asyncio import AsyncSession
 from api.auth.services.jwt_service import (
@@ -92,3 +92,11 @@ async def refresh_access_token(
     payload = await validate_refresh_token(refresh_token, redis_client)
     new_access, _ = create_token(payload['user_id'], timedelta(minutes=15))
     return {"access_token": new_access}
+
+@router.get(
+    '/protected',
+)
+async def protected(
+    user: UserOut = Depends(get_current_user)
+):
+    return {"message": "Protected route"}
