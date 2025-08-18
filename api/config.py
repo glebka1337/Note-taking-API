@@ -10,7 +10,9 @@ class Settings(BaseSettings):
     postgres_db: str
     postgres_host: str
     postgres_port: int
-
+    secret_key: str
+    algorithm: str = "HS256"
+    redis_url: str # ! pay attention to this one, in Dockerfile it's redis://redis:6379/0 
     @property
     def database_url(self) -> str:
         return (
