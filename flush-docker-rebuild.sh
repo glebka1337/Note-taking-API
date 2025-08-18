@@ -4,34 +4,36 @@ set -e
 echo "[*] Stop and delete all containers..."
 docker rm -f $(docker ps -aq) 2>/dev/null || true
 
-echo "[*] Delete previous image..."
-docker rmi -f fastapi-docker 2>/dev/null || true
+echo "[*] Delete previous images..."
+docker rmi -f fastapi-docker fastapi_test 2>/dev/null || true
 
 echo "[*] Build image -> fastapi-docker..."
 docker build --no-cache -t fastapi-docker .
 
-echo "[*] Run docker-compose for testing..."
-docker compose -f docker-compose.test.yml up -d
+echo "[*] Run docker-compose for testing (with forced rebuild)..."
+docker compose -f docker-compose.test.yml up -d --build --force-recreate
 
 echo "[*] Waiting for test DB..."
 sleep 2
-docker exec db_test sh -c "until pg_isready -U test_user -d test_db; do sleep 1; done"
+until docker exec db_test pg_isready -U test_user -d test_db; do
+  echo "[*] Waiting for PostgreSQL to be ready..."
+  sleep 1
+done
 sleep 2
 
-echo "[*] Run tests via AsyncClient script..."
-docker exec fastapi_test python /app/tests/test_endpoints.py
+echo "[*] Running tests with pytest..."
+docker exec fastapi_test pytest -v
 TEST_RESULT=$?
 
-echo "[*] Stop test docker-compose..."
+echo "[*] Stop test environment..."
 docker compose -f docker-compose.test.yml down
 
 if [ $TEST_RESULT -ne 0 ]; then
-    echo "[✗] Tests failed! Откатываемся."
+    echo "[✗] Tests failed! No deployment."
     exit 1
 else
-    echo "[✓] Tests passed! Поднимаем production..."
+    echo "[✓] Tests passed! Deploying production..."
     docker compose up -d
 fi
 
 echo "[✓] Done!"
-exit 0

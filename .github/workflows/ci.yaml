@@ -1,0 +1,59 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:dind
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker
+        run: |
+          sudo dockerd > /tmp/dockerd.log 2>&1 &
+          sleep 10
+          sudo docker info
+
+      - name: Build image
+        run: |
+          docker build --no-cache -t fastapi-docker .
+
+      - name: Start test environment
+        run: |
+          docker compose -f docker-compose.test.yml up -d --build --force-recreate
+
+      - name: Wait for DB
+        run: |
+          sleep 10
+          timeout 60s bash -c '
+            until docker exec db_test pg_isready -U test_user -d test_db; do
+              echo "Waiting for PostgreSQL..."
+              sleep 5
+            done
+          '
+
+      - name: Run tests with pytest
+        run: |
+          docker exec fastapi_test pytest -v
+        env:
+          PYTHONPATH: /app
+
+      - name: Save logs if failed
+        if: failure()
+        run: |
+          echo "::error::Tests failed!"
+          docker compose -f docker-compose.test.yml logs
+
+      - name: Cleanup
+        if: always
+        run: |
+          docker compose -f docker-compose.test.yml down --volumes --remove-orphans
