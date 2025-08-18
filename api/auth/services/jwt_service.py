@@ -1,7 +1,7 @@
+from fastapi import HTTPException, status
 from redis.asyncio import ConnectionPool, Redis
 from uuid import uuid4
 import jwt
-from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Annotated
 from datetime import datetime, timedelta, timezone
 from api.config import settings 
@@ -35,7 +35,7 @@ def create_token(
         'jti': str(uuid4()), # for unique token
         'iat': int(datetime.now(timezone.utc).timestamp()),
         'exp': int(expires_at.timestamp()),
-        'user_id': user_id
+        'user_id': str(user_id)
     }
     token = jwt.encode(
         payload,
@@ -43,9 +43,40 @@ def create_token(
         algorithm=settings.algorithm
     )
     return token, payload
+
+async def validate_refresh_token(
+    token: Annotated[str, "Token to validate"],    
+    redis_client: Annotated[Redis, "Redis client"]
+) -> Annotated[dict, "Payload of the token"]:
+    """
+    Validate a refresh token by checking if it exists in Redis and with jwt.decode
+    """
     
+    try:
+        payload = jwt.decode(
+            token,
+            settings.secret_key,
+            algorithms=settings.algorithm
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials"
+        )
+    
+    # check passed, check redis
+    
+    redis_token = await redis_client.get(f"token:{payload['user_id']}:{payload['jti']}")
+    if redis_token is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials"
+        )
+    
+    return payload
+
 async def add_refresh_token_to_redis(
-    redis_pool: ConnectionPool,
+    redis_client: Redis,
     user_id: int,
     jti: str,
     expires_delta: timedelta
@@ -53,22 +84,18 @@ async def add_refresh_token_to_redis(
     """
     Adds a refresh token's JTI to Redis with an expiration time.
     """
-    async with Redis(connection_pool=redis_pool) as redis_client:
-        # Use the JTI as the key to ensure uniqueness for each token.
-        # This allows us to invalidate specific tokens.
-        await redis_client.set(
-            f"token:{user_id}:{jti}", # Use a unique key
-            "valid",                  # Store a simple value to mark it as valid
-            ex=int(expires_delta.total_seconds()) # Set the expiration time
-        )
+    await redis_client.set(
+        f"token:{user_id}:{jti}", # Use a unique key
+        "valid",                  # Store a simple value to mark it as valid
+        ex=int(expires_delta.total_seconds()) # Set the expiration time
+    )
 
 async def remove_refresh_token_from_redis(
-    redis_pool: ConnectionPool,
+    redis_client: Redis,
     user_id: int,
     jti: str
 ):
     """
     Removes a refresh token's JTI from Redis, invalidating it.
     """
-    async with Redis(connection_pool=redis_pool) as redis_client:
-        await redis_client.delete(f"token:{user_id}:{jti}")
+    await redis_client.delete(f"token:{user_id}:{jti}")

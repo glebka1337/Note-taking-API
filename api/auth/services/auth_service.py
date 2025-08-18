@@ -57,7 +57,19 @@ async def login_user(
     user_login: UserLogin,
     db: AsyncSession
 ) -> UserOut:
-    
+    """
+    Login user
+
+    Args:
+        user_login (UserLogin): user to login
+        db (AsyncSession): connect to database
+
+    Raises:
+        HTTPException: if email or password is incorrect
+
+    Returns:
+        UserOut: pydantic model of user
+    """    
     user_in_db = await db.execute(
         select(User).where(
             User.email == user_login.email

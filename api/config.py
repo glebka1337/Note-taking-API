@@ -13,6 +13,8 @@ class Settings(BaseSettings):
     secret_key: str
     algorithm: str = "HS256"
     redis_url: str # ! pay attention to this one, in Dockerfile it's redis://redis:6379/0 
+    jwt_refresh_token_expires_days: int = 30 
+    jwt_access_token_expires_minutes: int = 30
     @property
     def database_url(self) -> str:
         return (
