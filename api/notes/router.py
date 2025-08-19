@@ -13,7 +13,6 @@ router = APIRouter(
     tags=["notes"],
 )
 
-
 @router.post('/', response_model=NoteRead)
 async def create_new_note(
     note_in: NoteCreate, 
@@ -69,8 +68,16 @@ async def get_note(
 
 
 @router.delete('/{note_id}')
-async def delete_note(note_id: int, db: AsyncSession = Depends(get_session)):
-    note = await get_note_by_id(note_id, db)
+async def delete_note(
+    note_id: int,
+    db: AsyncSession = Depends(get_session),
+    user: UserOut = Depends(get_current_user)
+):
+    note = await get_note_by_id(
+        note_id=note_id,
+        user_id=user.id,
+        db=db
+    )
     await db.delete(note)
     await db.commit()
     return {"ok": True}
@@ -79,9 +86,14 @@ async def delete_note(note_id: int, db: AsyncSession = Depends(get_session)):
 async def update_note(
     note_id: int,
     note_in: NoteUpdate,
-    db: AsyncSession = Depends(get_session)
+    db: AsyncSession = Depends(get_session),
+    user: UserOut = Depends(get_current_user)
 ):
-    note = await get_note_by_id(note_id, db)
+    note = await get_note_by_id(
+        note_id=note_id,
+        user_id=user.id,
+        db=db
+    )
 
     note_data = note_in.model_dump(exclude_unset=True)
     tag_ids = note_data.pop("tag_ids", None)

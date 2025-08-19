@@ -1,15 +1,21 @@
 from fastapi import Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
+from sqlalchemy import select, and_
 from api.core.models import Note, Tag
 from api.core.db import get_session
 
 async def get_note_by_id(
     note_id: int,
+    user_id: int,
     db: AsyncSession = Depends(get_session)
 ) -> Note:
     note_result = await db.execute(
-        select(Note).where(Note.id == note_id)
+        select(Note).where(
+            and_(
+                Note.id == note_id,
+                Note.user_id == user_id
+            )
+        )
     )
     if not (note_result := note_result.scalar_one_or_none()):
         raise HTTPException(
