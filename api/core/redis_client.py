@@ -1,6 +1,6 @@
 from typing import AsyncGenerator
 from redis.asyncio import Redis, ConnectionPool
-from api.config import settings
+from api.core.config import settings
 from contextlib import asynccontextmanager
 from fastapi import Depends
 
@@ -16,12 +16,7 @@ async def get_redis_pool() -> ConnectionPool:
         )
     return _redis_pool
 
-@asynccontextmanager
-async def get_redis() -> AsyncGenerator[Redis, None]:
-    pool = await get_redis_pool()
-    client = Redis(connection_pool=pool)
-    try:
-        yield client
-    finally:
-        await client.close()
+
+async def get_redis() -> Redis:
+    return await Redis(connection_pool= await get_redis_pool())
 

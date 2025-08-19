@@ -1,0 +1,44 @@
+services:
+  db_dev:
+    image: postgres:15-alpine
+    container_name: db_dev
+    environment:
+      POSTGRES_USER: dev_user
+      POSTGRES_PASSWORD: dev_password
+      POSTGRES_DB: dev_db
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dev_user -d dev_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis_dev:
+    image: redis:alpine
+    container_name: redis_dev
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  fastapi_dev:
+    container_name: fastapi_dev
+    build: .
+    env_file:
+      - .env.dev  
+    volumes:
+      - ./api:/app/api  
+      - ./entrypoint.sh:/app/entrypoint.sh
+    ports:
+      - "8000:8000"  
+    command: sh /app/entrypoint.sh
+    depends_on:
+      db_dev:
+        condition: service_healthy
+      redis_dev:
+        condition: service_healthy
+
+volumes:
+  postgres_data_dev:

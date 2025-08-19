@@ -2,10 +2,15 @@
 
 set -e
 
-echo "Stopping and removing old running test containers..."
+echo "Check if test containers are running..."
 
-docker container stop db_test fastapi_test redis_test
-docker container rm db_test fastapi_test redis_test
+if docker container inspect db_test fastapi_test redis_test > /dev/null 2>&1; then
+    echo "Test containers are already running. Stopping and removing them..."
+    docker container stop db_test fastapi_test redis_test
+    docker container rm db_test fastapi_test redis_test
+else
+    echo "No test containers found. Proceeding to build and start new ones..."
+fi
 
 echo "Removing old images..."
 docker image rm fastapidocker-fastapi_test:latest  

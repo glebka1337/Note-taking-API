@@ -2,7 +2,7 @@ from datetime import timedelta
 from fastapi import APIRouter, HTTPException, Header, status, Depends
 from api.auth.schemas import UserCreate, UserLogin, UserOut
 from api.auth.services.auth_service import create_new_user, get_current_user, login_user
-from api.db import get_session
+from api.core.db import get_session
 from sqlalchemy.ext.asyncio import AsyncSession
 from api.auth.services.jwt_service import (
     create_token,
@@ -41,12 +41,12 @@ async def login(
     
     # ? Create tokens
     
-    refresh_token: str; refresh_payload: dict = create_token(
+    refresh_token, refresh_payload = create_token(
         user_id=user_in_db.id,
         expires_delta=timedelta(days=30)
     )
     
-    access_token: str; access_payload: dict = create_token(
+    access_token, access_payload = create_token(
         user_id=user_in_db.id,
         expires_delta=timedelta(minutes=15)
     )

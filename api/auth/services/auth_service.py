@@ -86,7 +86,7 @@ async def login_user(
         )
     )
     
-    user = user_in_db.scalar_one_or_none()
+    user: User = user_in_db.scalar_one_or_none()
     detail="Incorrect email or password"
     
     if not user:
@@ -102,7 +102,11 @@ async def login_user(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail=detail
         )
-    return UserOut(**user.model_dump())
+    return UserOut(
+        id=user.id,
+        username=user.username,
+        email=user.email
+    )
 
 async def get_current_user(
     access_token: str = Header(..., alias="Authorization"),
@@ -126,13 +130,21 @@ async def get_current_user(
     if user_data := await redis_client.get(f"user:{payload['user_id']}"):
         return UserOut.model_validate_json(user_data)
     
-    user = await db.get(User, payload["user_id"])
+    user = await db.execute(
+        select(User).where(User.id == int(payload['user_id']))
+    )
+    user = user.scalar_one_or_none()
+    
     if not user:
         raise HTTPException(404, "User not found")
     
     await redis_client.set(
         f"user:{user.id}",
-        user.model_dump_json(),
+        UserOut(
+            id=user.id,
+            username=user.username,
+            email=user.email
+        ).model_dump_json(),
         ex=3600
     )
     return UserOut.model_validate(user)
