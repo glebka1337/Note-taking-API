@@ -11,6 +11,7 @@ class NoteBase(BaseModel):
 
 
 class NoteCreate(NoteBase):
+    user_id: int
     tag_ids: Optional[List[int]] = []
 
 

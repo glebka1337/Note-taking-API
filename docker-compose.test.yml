@@ -13,6 +13,16 @@ services:
       timeout: 5s 
       retries: 5
 
+  redis_test:
+    image: redis:alpine
+    container_name: redis_test
+    restart: always
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   fastapi_test:
     container_name: fastapi_test
     build: .

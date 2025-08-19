@@ -52,7 +52,10 @@ async def create_new_user(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Username already registered"
             )
-    user = User(**user_in.model_dump())
+    user = User(
+        username=user_in.username,
+        email=user_in.email
+    )
     user.hashed_password = get_password_hash(user_in.password)
     
     db.add(user)

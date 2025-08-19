@@ -1,4 +1,3 @@
-# api/main.py
 from fastapi import FastAPI, Request
 from contextlib import asynccontextmanager
 from api.db import Base, async_engine
@@ -6,6 +5,7 @@ from api.notes.router import router as notes_router
 from api.tags.router import router as tags_router
 import time
 import logging
+from api.auth.router import router as auth_router
 
 # --- Настройка логгера с записью в файл и в консоль ---
 logger = logging.getLogger("docker_api")
@@ -70,3 +70,4 @@ async def log_requests(request: Request, call_next):
 
 app.include_router(notes_router)
 app.include_router(tags_router)
+app.include_router(auth_router)
