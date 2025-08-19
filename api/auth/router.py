@@ -10,8 +10,8 @@ from api.auth.services.jwt_service import (
     validate_refresh_token,
     add_refresh_token_to_redis,
 )
-from api.config import settings
-from api.redis_client import get_redis
+from api.core.config import settings
+from api.core.redis_client import get_redis
 from redis.asyncio import Redis
 
 router = APIRouter(

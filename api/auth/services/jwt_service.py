@@ -4,7 +4,7 @@ from uuid import uuid4
 import jwt
 from typing import Annotated
 from datetime import datetime, timedelta, timezone
-from api.config import settings 
+from api.core.config import settings 
 
 def create_token(
     user_id: Annotated[int, "User ID to include in token"],

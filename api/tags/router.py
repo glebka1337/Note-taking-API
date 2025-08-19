@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from api.db import get_session
-from api.models import Tag
+from api.core.db import get_session
+from api.core.models import Tag
 from api.tags.schemas import TagCreate, TagRead
 from typing import List
 from api.tags.utils import get_tag_by_id

@@ -7,13 +7,13 @@ from api.auth.schemas import UserCreate, UserLogin, UserOut
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, or_
 from api.auth.security import get_password_hash, verify_password
-from api.config import settings
-from api.db import get_session
-from api.models import User
+from api.core.config import settings
+from api.core.db import get_session
+from api.core.models import User
 from redis.asyncio import Redis
 from typing import Annotated
 from api.auth.services.jwt_service import validate_refresh_token
-from api.redis_client import get_redis
+from api.core.redis_client import get_redis
 
 async def create_new_user(
     db: AsyncSession,

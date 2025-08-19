@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from api.models import Tag
+from api.core.models import Tag
 from sqlalchemy import select
 
 # ==========================

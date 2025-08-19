@@ -7,7 +7,7 @@ class TagBase(BaseModel):
     model_config = ConfigDict(from_attributes=True)  
 
 class TagCreate(TagBase):
-    user_id: int
+    pass
 
 class TagRead(TagBase):
     id: int

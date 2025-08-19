@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request
 from contextlib import asynccontextmanager
-from api.db import Base, async_engine
+from api.core.db import Base, async_engine
 from api.notes.router import router as notes_router
 from api.tags.router import router as tags_router
 import time

@@ -1,8 +1,10 @@
 from fastapi import APIRouter, Depends, status, HTTPException
+from api.auth.schemas import UserOut
+from api.auth.services.auth_service import get_current_user
 from api.notes.schemas import NoteRead, NoteCreate, NoteUpdate
-from api.db import get_session
+from api.core.db import get_session
 from sqlalchemy.ext.asyncio import AsyncSession
-from api.models import Note, Tag
+from api.core.models import Note, Tag
 from sqlalchemy import select
 from api.notes.utils import get_note_by_id, attach_tags
 
@@ -15,25 +17,29 @@ router = APIRouter(
 @router.post('/', response_model=NoteRead)
 async def create_new_note(
     note_in: NoteCreate, 
-    db: AsyncSession = Depends(get_session)
+    db: AsyncSession = Depends(get_session),
+    user: UserOut = Depends(get_current_user) 
 ):
     
     note_in_db_record = await db.execute(
         select(Note).where(Note.title == note_in.title)
     )
     
+    # check if note with this title already exists
+    # if it does, raise an error
+    # this is to prevent duplicate titles    
     if note_in_db_record.scalar_one_or_none():
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Note with this title already exists"
         )
     
-    # создаём заметку
     note_data = note_in.model_dump()
     tag_ids = note_data.pop("tag_ids", [])
     note = Note(**note_data)
-
-    # привязка тегов, если переданы
+    note.user_id = user.id
+    
+    # Attach tags if provided
     if tag_ids:
         tags = await db.execute(select(Tag).where(Tag.id.in_(tag_ids)))
         note.tags = tags.scalars().all()
@@ -44,27 +50,24 @@ async def create_new_note(
     return note
 
 
-# ==========================
-# Получение списка заметок
-# ==========================
 @router.get('/', response_model=list[NoteRead])
-async def get_notes(db: AsyncSession = Depends(get_session)):
-    notes = await db.execute(select(Note))
+async def get_notes(
+    db: AsyncSession = Depends(get_session),
+    user: UserOut = Depends(get_current_user)
+):
+    notes = await db.execute(select(Note).where(Note.user_id == user.id))
     return notes.scalars().all()
 
-
-# ==========================
-# Получение одной заметки
-# ==========================
 @router.get('/{note_id}', response_model=NoteRead)
-async def get_note(note_id: int, db: AsyncSession = Depends(get_session)):
+async def get_note(
+    note_id: int,
+    db: AsyncSession = Depends(get_session),
+    user: UserOut = Depends(get_current_user)    
+):
     note = await get_note_by_id(note_id, db)
     return note
 
 
-# ==========================
-# Удаление заметки
-# ==========================
 @router.delete('/{note_id}')
 async def delete_note(note_id: int, db: AsyncSession = Depends(get_session)):
     note = await get_note_by_id(note_id, db)
@@ -72,10 +75,6 @@ async def delete_note(note_id: int, db: AsyncSession = Depends(get_session)):
     await db.commit()
     return {"ok": True}
 
-
-# ==========================
-# Обновление заметки
-# ==========================
 @router.put('/{note_id}', response_model=NoteRead)
 async def update_note(
     note_id: int,

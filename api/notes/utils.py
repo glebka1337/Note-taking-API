@@ -1,8 +1,8 @@
 from fastapi import Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from api.models import Note, Tag
-from api.db import get_session
+from api.core.models import Note, Tag
+from api.core.db import get_session
 
 async def get_note_by_id(
     note_id: int,
