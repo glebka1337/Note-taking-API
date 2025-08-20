@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, status
 from contextlib import asynccontextmanager
 from api.core.db import Base, async_engine
 from api.notes.router import router as notes_router
@@ -47,6 +47,9 @@ app = FastAPI(
     debug=True
 )
 
+@app.get("/health", status_code=status.HTTP_200_OK)
+async def health_check():
+    return {"status": "ok"}
 
 @app.middleware("http")
 async def log_requests(request: Request, call_next):

@@ -74,13 +74,13 @@ async def update_tag(
     await db.refresh(tag)
     return tag
 
-@router.delete("/{tag_id}")
+@router.delete("/{tag_id}", status_code=status.HTTP_200_OK)
 async def delete_tag(
     tag_id: int,
     db: AsyncSession = Depends(get_session),
     user: UserOut = Depends(get_current_user)
 ):
-    tag = await get_tag_by_id(tag_id, db)
+    tag = await get_tag_by_id(tag_id, db, user_id=user.id)
     await db.delete(tag)
     await db.commit()
     return {"ok": True}

@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     redis_url: str # ! pay attention to this one, in Dockerfile it's redis://redis:6379/0 
     jwt_refresh_token_expires_days: int = 30 
     jwt_access_token_expires_minutes: int = 30
+    debug: bool = False
     @property
     def database_url(self) -> str:
         return (
@@ -19,6 +20,7 @@ class Settings(BaseSettings):
         )
 
     model_config = SettingsConfigDict(
+        env_file=".env",
         env_file_encoding="utf-8",
         from_attributes=True
     )

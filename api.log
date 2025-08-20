@@ -1,0 +1,37 @@
+2025-08-20 09:26:37,802 - INFO - Database tables created or already exist.
+2025-08-20 09:27:18,234 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-20 09:27:18,539 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.3046s
+2025-08-20 09:27:18,543 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-20 09:27:18,755 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2125s
+2025-08-20 09:27:18,799 - INFO - Request: POST http://localhost:8000/tags/
+2025-08-20 09:27:18,823 - INFO - Response: POST http://localhost:8000/tags/ Status: 200 Process time: 0.0246s
+2025-08-20 09:27:18,898 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-20 09:27:18,904 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0059s
+2025-08-20 09:27:18,906 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-20 09:27:19,105 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1987s
+2025-08-20 09:27:19,150 - INFO - Request: GET http://localhost:8000/tags/
+2025-08-20 09:27:19,169 - INFO - Response: GET http://localhost:8000/tags/ Status: 200 Process time: 0.0195s
+2025-08-20 09:27:19,272 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-20 09:27:19,277 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0051s
+2025-08-20 09:27:19,279 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-20 09:27:19,479 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1994s
+2025-08-20 09:27:19,527 - INFO - Request: POST http://localhost:8000/tags/
+2025-08-20 09:27:19,545 - INFO - Response: POST http://localhost:8000/tags/ Status: 200 Process time: 0.0178s
+2025-08-20 09:27:19,588 - INFO - Request: GET http://localhost:8000/tags/2
+2025-08-20 09:27:19,597 - INFO - Response: GET http://localhost:8000/tags/2 Status: 200 Process time: 0.0095s
+2025-08-20 09:27:19,686 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-20 09:27:19,691 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0050s
+2025-08-20 09:27:19,693 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-20 09:27:19,892 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1986s
+2025-08-20 09:27:19,935 - INFO - Request: POST http://localhost:8000/tags/
+2025-08-20 09:27:19,945 - INFO - Response: POST http://localhost:8000/tags/ Status: 200 Process time: 0.0107s
+2025-08-20 09:27:19,996 - INFO - Request: PUT http://localhost:8000/tags/3
+2025-08-20 09:27:20,036 - INFO - Response: PUT http://localhost:8000/tags/3 Status: 200 Process time: 0.0404s
+2025-08-20 09:27:20,107 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-20 09:27:20,112 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0056s
+2025-08-20 09:27:20,115 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-20 09:27:20,313 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1984s
+2025-08-20 09:27:20,356 - INFO - Request: POST http://localhost:8000/tags/
+2025-08-20 09:27:20,367 - INFO - Response: POST http://localhost:8000/tags/ Status: 200 Process time: 0.0109s
+2025-08-20 09:27:20,416 - INFO - Request: DELETE http://localhost:8000/tags/4
+2025-08-20 09:27:20,466 - INFO - Response: DELETE http://localhost:8000/tags/4 Status: 200 Process time: 0.0501s
