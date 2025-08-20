@@ -8,7 +8,8 @@ class Settings(BaseSettings):
     postgres_port: int
     secret_key: str
     algorithm: str = "HS256"
-    redis_url: str # ! pay attention to this one, in Dockerfile it's redis://redis:6379/0 
+    redis_port: int = 6379
+    redis_host: str = "localhost"
     jwt_refresh_token_expires_days: int = 30 
     jwt_access_token_expires_minutes: int = 30
     debug: bool = False
@@ -19,6 +20,10 @@ class Settings(BaseSettings):
             f"@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
         )
 
+    @property
+    def redis_url(self) -> str:
+        return f"redis://{self.redis_host}:{self.redis_port}/0"
+    
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
