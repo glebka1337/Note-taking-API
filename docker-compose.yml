@@ -25,6 +25,7 @@ services:
 
   web:  
     build: .
+    container_name: web
     env_file:
       - .env
     ports:
