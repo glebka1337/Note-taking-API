@@ -28,10 +28,10 @@ jobs:
           echo "POSTGRES_USER=dev_user" >> .env
           echo "POSTGRES_PASSWORD=dev_password" >> .env
           echo "POSTGRES_DB=dev_db" >> .env
-          echo "POSTGRES_HOST=db_dev" >> .env
+          echo "POSTGRES_HOST=db" >> .env
           echo "POSTGRES_PORT=5432" >> .env
           echo "SECRET_KEY=secret_key" >> .env
-          echo "REDIS_HOST=redis_dev" >> .env
+          echo "REDIS_HOST=redis" >> .env
           echo "REDIS_PORT=6379" >> .env
           echo "DEBUG=True" >> .env
 
