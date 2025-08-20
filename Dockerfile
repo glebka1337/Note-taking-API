@@ -12,6 +12,7 @@ RUN pip install --no-cache-dir \
     anyio 
     
 COPY ./api /app/api
+COPY ./tests /app/tests
 
 ENV PYTHONPATH=/app
 
