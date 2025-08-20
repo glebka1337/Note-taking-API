@@ -16,6 +16,13 @@ class User(Base):
     notes: Mapped[list["Note"]] = relationship("Note", back_populates="user", cascade="all, delete-orphan")
     tags: Mapped[list["Tag"]] = relationship("Tag", back_populates="user", cascade="all, delete-orphan")
 
+note_links = Table(
+    "note_links",
+    Base.metadata,
+    Column("note_id", ForeignKey('notes.id', ondelete='CASCADE'), primary_key=True),
+    Column("linked_note_id", ForeignKey('notes.id', ondelete='CASCADE'), primary_key=True),
+)
+
 class Note(Base):
     __tablename__ = "notes"
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -33,11 +40,30 @@ class Note(Base):
         back_populates="notes",
         lazy="dynamic"
     )
+    
+    linked_notes: Mapped[list['Note']] = relationship( # ? Relationship for defining which notes were mentioned in this note
+        'Note',
+        secondary='note_links',
+        primaryjoin="Note.id == note_links.c.note_id",
+        secondaryjoin="Note.id == note_links.c.linked_note_id",
+        back_populates='backlinks',
+        lazy='dynamic'
+    )
+    
+    backlinks: Mapped[list['Note']] = relationship( # ? Realationship for defining which notes link to this note 
+        'Note',
+        secondary='note_links',
+        primaryjoin='Note.id == note_links.c.linked_note_id',
+        secondaryjoin='Note.id == note_links.c.note_id',
+        back_populates='linked_notes',
+        lazy='dynamic'
+    )
+    
 
 class Tag(Base):
     __tablename__ = "tags"
     id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(String(50), nullable=False)  # Убрал unique
+    name: Mapped[str] = mapped_column(String(50), nullable=False) 
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
     
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
