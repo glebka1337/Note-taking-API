@@ -52,7 +52,7 @@ jobs:
           '
 
       - name: Run tests with pytest
-        run: docker exec web pytest -v
+        run: docker exec web pytest -v /app/tests
         env:
           PYTHONPATH: /app
 
