@@ -27,3 +27,12 @@ class NoteRead(NoteBase):
     updated_at: datetime
     user_id: int
     model_config = ConfigDict(from_attributes=True)
+
+class LinkedNote(BaseModel):
+    """
+    Class for representing a linked note in the context of a note's cross-links.
+    """
+    id: int
+    title: str
+    
+    
