@@ -33,15 +33,13 @@ class NoteParser:
         tags = re.findall(pattern, self.content)
         return [tag for tag in tags]
 
-    def parse_links(self) -> List[Dict[str, str]]:
+    def parse_links(self) -> dict[str, str]:
         """
-        Searches for a pattern like [Title](link)
-        Returns:
-            List[Dict[str, str]]: [{'title_of_link': 'link_to_another_note'}, ...]
+        Parses links like [Title](uuid) and returns {uuid: title}
         """
         pattern = r'\[([^\]]+)\]\(([^)]+)\)'
         matches = re.findall(pattern, self.content)
-        return [{m[0].strip(): m[1].strip()} for m in matches]
+        return {m[1].strip(): m[0].strip() for m in matches}
 
     def parse_children(self) -> List[str]:
         """
