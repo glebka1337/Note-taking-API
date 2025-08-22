@@ -16,26 +16,30 @@ class User(Base):
     notes: Mapped[list["Note"]] = relationship("Note", back_populates="user", cascade="all, delete-orphan")
     tags: Mapped[list["Tag"]] = relationship("Tag", back_populates="user", cascade="all, delete-orphan")
 
-class Notebook(Base):
-    __tablename__ = "notebooks"
-    
+
+class Folder(Base):
+    __tablename__ = "folders"
+
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     title: Mapped[str] = mapped_column(String(100), nullable=False)
     slug: Mapped[str] = mapped_column(String(150), nullable=False)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
-    parent_id: Mapped[int] = mapped_column(ForeignKey("notebooks.id", ondelete="CASCADE"), nullable=True)
+    parent_id: Mapped[int] = mapped_column(ForeignKey("folders.id", ondelete="CASCADE"), nullable=True)
 
-    user: Mapped["User"] = relationship("User", back_populates="notebooks")
-    
-    parent: Mapped["Notebook"] = relationship(
-        "Notebook", remote_side=[id], back_populates="children"
-    )
-    children: Mapped[list["Notebook"]] = relationship(
-        "Notebook", back_populates="parent", cascade="all, delete-orphan"
-    )
-    notes: Mapped[list["Note"]] = relationship("Note", back_populates="notebook", cascade="all, delete-orphan")
+    user: Mapped["User"] = relationship("User", back_populates="folders")
 
-    __table_args__ = (UniqueConstraint('parent_id', 'slug', 'user_id', name='uq_user_parent_slug'),)
+    parent: Mapped["Folder"] = relationship(
+        "Folder", remote_side=[id], back_populates="children"
+    )
+    children: Mapped[list["Folder"]] = relationship(
+        "Folder", back_populates="parent", cascade="all, delete-orphan"
+    )
+
+    notes: Mapped[list["Note"]] = relationship("Note", back_populates="folder", cascade="all, delete-orphan")
+
+    __table_args__ = (
+        UniqueConstraint('parent_id', 'slug', 'user_id', name='uq_user_parent_slug'),
+    )
     
 note_links = Table(
     "note_links",
@@ -56,8 +60,8 @@ class Note(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     user: Mapped["User"] = relationship("User", back_populates="notes")
     
-    notebook_id: Mapped[int] = mapped_column(ForeignKey("notebooks.id", ondelete="CASCADE"), nullable=True)
-    notebook: Mapped["Notebook"] = relationship("Notebook", back_populates="notes")
+    folder_id: Mapped[int] = mapped_column(ForeignKey("folders.id", ondelete="CASCADE"), nullable=True)
+    folder: Mapped["Folder"] = relationship("Folder", back_populates="notes")
         
     tags: Mapped[list["Tag"]] = relationship(
         "Tag",
