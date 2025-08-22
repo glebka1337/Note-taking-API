@@ -34,7 +34,7 @@ class Note(Base):
     __tablename__ = "notes"
     id: Mapped[int] = mapped_column(primary_key=True)
     uuid: Mapped[UUID] = mapped_column(
-        PG_UUID(as_uuid=True),  # чтобы не конфликтовало с stdlib UUID
+        PG_UUID(as_uuid=True), 
         default=uuid4,
         unique=True,
         nullable=False
@@ -54,8 +54,7 @@ class Note(Base):
     tags: Mapped[list["Tag"]] = relationship(
         "Tag",
         secondary="note_tags",
-        back_populates="notes",
-        lazy="dynamic"
+        back_populates="notes"
     )
     
     linked_notes: Mapped[list["CrossLink"]] = relationship(
@@ -87,8 +86,7 @@ class Tag(Base):
     notes: Mapped[list["Note"]] = relationship(
         "Note",
         secondary="note_tags",
-        back_populates="tags",
-        lazy="dynamic"
+        back_populates="tags"
     )
 
 note_tags = Table(

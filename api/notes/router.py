@@ -1,21 +1,14 @@
-# api/notes/router.py
-
+from uuid import uuid4
 from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-
 from api.auth.schemas import UserOut
 from api.auth.services.auth_service import get_current_user
 from api.core.db import get_session
-from api.core.models import Note, Tag
+from api.core.models import Note
 from api.notes.schemas import NoteRead, NoteCreate, NoteUpdate
-from api.notes.utils import (
-    get_note_by_id,
-    attach_tags,
-    update_note_cross_links,
-    parse_inner_links,
-)
-
+from api.notes.service import NoteService
+from api.notes.utils import NoteParser
 router = APIRouter(prefix="/notes", tags=["notes"])
 
 
@@ -25,29 +18,35 @@ async def create_note(
     db: AsyncSession = Depends(get_session),
     user: UserOut = Depends(get_current_user),
 ):
+    try:
+        note_data = note_in.model_dump()
+        note = Note(**note_data, user_id=user.id, uuid=uuid4())
+        db.add(note)
+        await db.flush() 
 
-    existing = await db.execute(
-        select(Note).where(Note.title == note_in.title, Note.user_id == user.id)
-    )
-    if existing.scalar():
-        raise HTTPException(400, "Note with this title already exists")
+        parser = NoteParser(note.content)
+        
+        service = NoteService(db)
+        service.note = note
+        service.parsed_tags = parser.parse_tags()        
+        service.parsed_children = parser.parse_children() 
+        service.parsed_links = parser.parse_links()    
 
-    note_data = note_in.model_dump()
-    tag_ids = note_data.pop("tag_ids", [])
-    note = Note(**note_data, user_id=user.id)
+        await service._handle_tags()
+        await service._handle_children()
+        await service._handle_links()
 
-    if tag_ids:
-        tags = await db.execute(select(Tag).where(Tag.id.in_(tag_ids)))
-        note.tags = tags.scalars().all()
+        await db.commit()
+        await db.refresh(note)
+        return note
+        
+    except Exception as e:
+        await db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to create note: {str(e)}"
+        )
 
-    db.add(note)
-    await db.commit()
-    await db.refresh(note)
-
-    await update_note_cross_links(note, db)
-    await db.commit()
-
-    return note
 
 
 @router.get("/", response_model=list[NoteRead])
