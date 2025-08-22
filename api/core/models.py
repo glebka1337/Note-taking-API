@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from sqlalchemy import Column, DateTime, ForeignKey, String, Text, BigInteger
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Text, BigInteger
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from api.core.db import Base
 from sqlalchemy import Table
@@ -16,12 +16,17 @@ class User(Base):
     notes: Mapped[list["Note"]] = relationship("Note", back_populates="user", cascade="all, delete-orphan")
     tags: Mapped[list["Tag"]] = relationship("Tag", back_populates="user", cascade="all, delete-orphan")
 
-note_links = Table(
-    "note_links",
-    Base.metadata,
-    Column("note_id", ForeignKey('notes.id', ondelete='CASCADE'), primary_key=True),
-    Column("linked_note_id", ForeignKey('notes.id', ondelete='CASCADE'), primary_key=True),
-)
+class CrossLink(Base):
+    __tablename__ = "cross_links"
+    
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    title: Mapped[str] = mapped_column(String(100), nullable=False) 
+    
+    note_id: Mapped[int] = mapped_column(ForeignKey("notes.id", ondelete="CASCADE"), nullable=False)
+    linked_note_id: Mapped[int] = mapped_column(ForeignKey("notes.id", ondelete="CASCADE"), nullable=False)
+    
+    note: Mapped["Note"] = relationship("Note", foreign_keys=[note_id], back_populates="linked_notes")
+    linked_note: Mapped["Note"] = relationship("Note", foreign_keys=[linked_note_id], back_populates="backlinks")
 
 class Note(Base):
     __tablename__ = "notes"
@@ -35,6 +40,10 @@ class Note(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     user: Mapped["User"] = relationship("User", back_populates="notes")
     
+    parent_id: Mapped[int] = mapped_column(ForeignKey("notes.id", ondelete="CASCADE"), nullable=True)
+    parent: Mapped["Note"] = relationship("Note", remote_side=[id], back_populates="children")
+    children: Mapped[list["Note"]] = relationship("Note", back_populates="parent", cascade="all, delete-orphan")
+    
     tags: Mapped[list["Tag"]] = relationship(
         "Tag",
         secondary="note_tags",
@@ -42,22 +51,18 @@ class Note(Base):
         lazy="dynamic"
     )
     
-    linked_notes: Mapped[list['Note']] = relationship( # ? Relationship for defining which notes were mentioned in this note
-        'Note',
-        secondary='note_links',
-        primaryjoin="Note.id == note_links.c.note_id",
-        secondaryjoin="Note.id == note_links.c.linked_note_id",
-        back_populates='backlinks',
-        lazy='dynamic'
+    linked_notes: Mapped[list["CrossLink"]] = relationship(
+        "CrossLink",
+        foreign_keys="[CrossLink.note_id]",
+        back_populates="note",
+        cascade="all, delete-orphan"
     )
     
-    backlinks: Mapped[list['Note']] = relationship( # ? Realationship for defining which notes link to this note 
-        'Note',
-        secondary='note_links',
-        primaryjoin='Note.id == note_links.c.linked_note_id',
-        secondaryjoin='Note.id == note_links.c.note_id',
-        back_populates='linked_notes',
-        lazy='dynamic'
+    backlinks: Mapped[list["CrossLink"]] = relationship(
+        "CrossLink",
+        foreign_keys="[CrossLink.linked_note_id]",
+        back_populates="linked_note",
+        cascade="all, delete-orphan"
     )
     
 

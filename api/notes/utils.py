@@ -3,20 +3,57 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, and_
 from api.core.models import Note, Tag
 from api.core.db import get_session
-from typing import Annotated
+from typing import Annotated, Dict, List
 from api.core.models import note_links
 import re
+from api.core.models import Note, Tag
 
-def parse_inner_links(
-    note_content: Annotated[str, "Note content"]
-) -> list[str]:
-    """
-    Parses inner links from the note content.
-    """
-    pattern = r'\[\[(.*?)\]\]'
-    matches = re.findall(pattern, note_content)
-    return [match.strip() for match in matches]
 
+class NoteParser:
+    """
+    Parses tags, inner links and childer notes
+    
+    parse_tags() -> List[Annotated[str, "Name_of_tag"]]
+    parse_links() -> List[Dict[str, str]] [{'title_of_link': 'link_to_another_note'}]
+    parse_children() -> List[str] (list of children names)
+    """
+
+    def __init__(self, content: str):
+        self.content = content
+
+    def parse_tags(self) -> List[str]:
+        """
+        Returns a list of tag names
+
+        Returns:
+            List[str]:
+        """
+        
+        pattern = r'#(\w+)' 
+        tags = re.findall(pattern, self.content)
+        return [tag for tag in tags]
+
+    def parse_links(self) -> List[Dict[str, str]]:
+        """
+        Searches for a pattern like [Title](link)
+        Returns:
+            List[Dict[str, str]]: [{'title_of_link': 'link_to_another_note'}, ...]
+        """
+        pattern = r'\[([^\]]+)\]\(([^)]+)\)'
+        matches = re.findall(pattern, self.content)
+        return [{m[0].strip(): m[1].strip()} for m in matches]
+
+    def parse_children(self) -> List[str]:
+        """
+        Search for children names in pattern [[ChildName]]
+        """
+        pattern = r'\[\[(.*?)\]\]'
+        matches = re.findall(pattern, self.content)
+        return [m.strip() for m in matches]
+
+async def parse_inner_links(s: str):
+    "Place holder for some time"
+    ...
 
 async def update_note_cross_links(
     note: Note,
