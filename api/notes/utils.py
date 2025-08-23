@@ -3,9 +3,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, and_
 from api.core.models import Note, Tag
 from api.core.db import get_session
-from typing import Annotated, Dict, List
+from typing import List
 import re
-from api.core.models import Note, Tag
+from api.core.models import Note, CrossLink
+from sqlalchemy.orm import selectinload
+
 
 
 class NoteParser:
@@ -48,3 +50,37 @@ class NoteParser:
         matches = re.findall(pattern, self.content)
         return [m.strip() for m in matches]
 
+async def get_note_by_id(
+    note_id: int,
+    user_id: int,
+    db: AsyncSession = Depends(get_session)    
+) -> Note:
+    result = await db.execute(
+        select(Note).where(and_(Note.id == note_id, Note.user_id == user_id))
+    )
+    note = result.scalar_one_or_none()
+    if not note:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Note not found"
+        )
+    return note
+
+async def get_note_with_relations(
+    note_id: int,
+    user_id: int,
+    db: AsyncSession = Depends(get_session)
+) -> Note:
+    """
+    Loads a note with all its relationships using eager loading to avoid N+1 queries.
+    """
+    result = await db.execute(
+        select(Note)
+        .where(Note.id == note_id, Note.user_id == user_id)
+        .options(
+            selectinload(Note.children),
+            selectinload(Note.tags),
+            selectinload(Note.linked_notes).joinedload(CrossLink.linked_note),
+        )
+    )
+    return result.scalar_one()

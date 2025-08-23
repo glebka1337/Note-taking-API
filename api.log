@@ -1,0 +1,409 @@
+2025-08-22 17:24:51,378 - INFO - Database tables created or already exist.
+2025-08-22 17:24:57,066 - INFO - Database tables created or already exist.
+2025-08-22 17:25:50,635 - INFO - Database tables created or already exist.
+2025-08-22 17:25:54,088 - INFO - Database tables created or already exist.
+2025-08-22 17:26:39,666 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-22 17:26:39,668 - INFO - Response: POST http://localhost:8000/notes/ Status: 422 Process time: 0.0018s
+2025-08-22 17:29:18,778 - INFO - Database tables created or already exist.
+2025-08-22 17:29:23,053 - INFO - Database tables created or already exist.
+2025-08-22 17:29:28,450 - INFO - Database tables created or already exist.
+2025-08-22 17:29:34,334 - INFO - Database tables created or already exist.
+2025-08-22 17:29:37,010 - INFO - Database tables created or already exist.
+2025-08-22 17:29:39,443 - INFO - Database tables created or already exist.
+2025-08-22 17:29:41,826 - INFO - Database tables created or already exist.
+2025-08-22 17:29:42,977 - INFO - Database tables created or already exist.
+2025-08-22 17:29:49,340 - INFO - Database tables created or already exist.
+2025-08-22 17:29:49,669 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-22 17:29:49,907 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2388s
+2025-08-22 17:29:49,909 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-22 17:29:49,912 - INFO - Response: POST http://localhost:8000/auth/login Status: 422 Process time: 0.0022s
+2025-08-22 17:30:23,776 - INFO - Database tables created or already exist.
+2025-08-22 17:30:25,330 - INFO - Database tables created or already exist.
+2025-08-22 17:30:27,315 - INFO - Database tables created or already exist.
+2025-08-22 17:30:27,319 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-22 17:30:27,338 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0193s
+2025-08-22 17:30:27,340 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-22 17:30:27,556 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2169s
+2025-08-22 17:30:27,662 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-22 17:30:27,674 - ERROR - Request failed: POST http://localhost:8000/notes/ - greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place? (Background on this error at: https://sqlalche.me/e/20/xd2s)
+Traceback (most recent call last):
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 126, in receive
+    raise EndOfStream from None
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/main.py", line 60, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 159, in call_next
+    raise app_exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/notes/router.py", line 41, in create_note
+    await service._handle_tags()
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/notes/service.py", line 46, in _handle_tags
+    self.note.tags = tags_to_attach
+    ^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/attributes.py", line 540, in __set__
+    self.impl.set(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/writeonly.py", line 325, in set
+    old_collection = util.IdentitySet(
+                     ^^^^^^^^^^^^^^^^^
+  File "lib/sqlalchemy/cyextension/collections.pyx", line 204, in sqlalchemy.cyextension.collections.IdentitySet.__init__
+  File "lib/sqlalchemy/cyextension/collections.pyx", line 306, in sqlalchemy.cyextension.collections.IdentitySet.update
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2843, in __iter__
+    result = self._iter()
+             ^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/dynamic.py", line 151, in _iter
+    sess = self.session
+           ^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/dynamic.py", line 140, in session
+    sess.flush()
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4345, in flush
+    self._flush(objects)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4480, in _flush
+    with util.safe_reraise():
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 228, in __exit__
+    raise value.with_traceback(traceback)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4481, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "<string>", line 2, in rollback
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1395, in rollback
+    raise rollback_err[1].with_traceback(rollback_err[2])
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1360, in rollback
+    t[1].rollback()
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2611, in rollback
+    self._do_rollback()
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2730, in _do_rollback
+    self._close_impl(try_deactivate=True)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2713, in _close_impl
+    self._connection_rollback_impl()
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2705, in _connection_rollback_impl
+    self.connection._rollback_impl()
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1130, in _rollback_impl
+    self._handle_dbapi_exception(e, None, None, None, None)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2358, in _handle_dbapi_exception
+    raise exc_info[1].with_traceback(exc_info[2])
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1128, in _rollback_impl
+    self.engine.dialect.do_rollback(self.connection)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 711, in do_rollback
+    dbapi_connection.rollback()
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 882, in rollback
+    self._handle_exception(error)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 794, in _handle_exception
+    raise error
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 876, in rollback
+    self.await_(self._rollback_and_discard())
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 123, in await_only
+    raise exc.MissingGreenlet(
+sqlalchemy.exc.MissingGreenlet: greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place? (Background on this error at: https://sqlalche.me/e/20/xd2s)
+2025-08-22 17:33:17,919 - INFO - Database tables created or already exist.
+2025-08-22 17:33:38,137 - INFO - Database tables created or already exist.
+2025-08-22 17:33:59,591 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-22 17:33:59,610 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0187s
+2025-08-22 17:33:59,611 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-22 17:33:59,826 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2147s
+2025-08-22 17:33:59,939 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-22 17:33:59,952 - ERROR - Request failed: POST http://localhost:8000/notes/ - greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place? (Background on this error at: https://sqlalche.me/e/20/xd2s)
+Traceback (most recent call last):
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 126, in receive
+    raise EndOfStream from None
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/main.py", line 60, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 159, in call_next
+    raise app_exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/notes/router.py", line 41, in create_note
+    await service._handle_tags()
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/notes/service.py", line 43, in _handle_tags
+    self.note.tags = tags_to_attach
+    ^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/attributes.py", line 540, in __set__
+    self.impl.set(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/writeonly.py", line 325, in set
+    old_collection = util.IdentitySet(
+                     ^^^^^^^^^^^^^^^^^
+  File "lib/sqlalchemy/cyextension/collections.pyx", line 204, in sqlalchemy.cyextension.collections.IdentitySet.__init__
+  File "lib/sqlalchemy/cyextension/collections.pyx", line 306, in sqlalchemy.cyextension.collections.IdentitySet.update
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2843, in __iter__
+    result = self._iter()
+             ^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/dynamic.py", line 173, in _iter
+    return self._generate(sess)._iter()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2358, in _handle_dbapi_exception
+    raise exc_info[1].with_traceback(exc_info[2])
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 580, in execute
+    self._adapt_connection.await_(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 123, in await_only
+    raise exc.MissingGreenlet(
+sqlalchemy.exc.MissingGreenlet: greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place? (Background on this error at: https://sqlalche.me/e/20/xd2s)
+2025-08-22 17:35:18,793 - INFO - Database tables created or already exist.
+2025-08-22 17:38:05,643 - INFO - Database tables created or already exist.
+2025-08-22 17:38:08,452 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-22 17:38:08,471 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0196s
+2025-08-22 17:38:08,473 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-22 17:38:08,689 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2163s
+2025-08-22 17:38:08,756 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-22 17:38:08,768 - ERROR - Request failed: POST http://localhost:8000/notes/ - 'Note' object has no attribute 'awaitable_attrs'
+Traceback (most recent call last):
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 126, in receive
+    raise EndOfStream from None
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/main.py", line 60, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 159, in call_next
+    raise app_exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/notes/router.py", line 41, in create_note
+    await service._handle_tags()
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/notes/service.py", line 45, in _handle_tags
+    await self.note.awaitable_attrs.tags
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Note' object has no attribute 'awaitable_attrs'
+2025-08-22 18:47:51,251 - INFO - Database tables created or already exist.
+2025-08-22 18:47:54,352 - INFO - Database tables created or already exist.
+2025-08-22 18:47:56,994 - INFO - Database tables created or already exist.
+2025-08-22 18:51:30,953 - INFO - Database tables created or already exist.
+2025-08-22 18:51:32,890 - INFO - Database tables created or already exist.
+2025-08-22 18:51:46,252 - INFO - Database tables created or already exist.
+2025-08-22 18:51:50,660 - INFO - Database tables created or already exist.
+2025-08-22 18:51:54,929 - INFO - Database tables created or already exist.
+2025-08-22 18:52:00,311 - INFO - Database tables created or already exist.
+2025-08-22 18:52:03,764 - INFO - Database tables created or already exist.
+2025-08-22 18:52:11,924 - INFO - Database tables created or already exist.
+2025-08-22 18:52:16,098 - INFO - Database tables created or already exist.
+2025-08-22 18:52:53,180 - INFO - Database tables created or already exist.
+2025-08-22 18:58:49,085 - INFO - Database tables created or already exist.
+2025-08-22 18:58:51,383 - INFO - Database tables created or already exist.
+2025-08-22 18:58:56,355 - INFO - Database tables created or already exist.
+2025-08-22 18:58:57,510 - INFO - Database tables created or already exist.
+2025-08-22 19:06:16,237 - INFO - Database tables created or already exist.
+2025-08-22 19:06:19,988 - INFO - Database tables created or already exist.
+2025-08-22 19:06:24,167 - INFO - Database tables created or already exist.
+2025-08-22 19:06:27,235 - INFO - Database tables created or already exist.
+2025-08-22 19:06:31,098 - INFO - Database tables created or already exist.
+2025-08-22 19:06:45,597 - INFO - Database tables created or already exist.
+2025-08-22 19:06:48,258 - INFO - Database tables created or already exist.
+2025-08-22 19:06:56,669 - INFO - Database tables created or already exist.
+2025-08-22 19:07:17,229 - INFO - Database tables created or already exist.
+2025-08-22 19:07:19,101 - INFO - Database tables created or already exist.
+2025-08-22 19:07:23,250 - INFO - Database tables created or already exist.
+2025-08-22 19:07:28,950 - INFO - Database tables created or already exist.
+2025-08-22 19:07:42,626 - INFO - Database tables created or already exist.
+2025-08-22 19:07:50,986 - INFO - Database tables created or already exist.
+2025-08-22 19:07:56,184 - INFO - Database tables created or already exist.
+2025-08-22 19:08:05,415 - INFO - Database tables created or already exist.
+2025-08-22 19:08:09,107 - INFO - Database tables created or already exist.
+2025-08-22 19:11:54,037 - INFO - Database tables created or already exist.
+2025-08-22 19:11:57,623 - INFO - Database tables created or already exist.
+2025-08-22 19:13:04,322 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-22 19:13:04,341 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0190s
+2025-08-22 19:13:04,343 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-22 19:13:04,560 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2167s
+2025-08-22 19:13:04,626 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-22 19:13:04,635 - INFO - Response: POST http://localhost:8000/notes/ Status: 500 Process time: 0.0087s
+2025-08-22 19:15:30,778 - INFO - Database tables created or already exist.
+2025-08-22 19:15:31,980 - INFO - Database tables created or already exist.
+2025-08-22 19:15:33,846 - INFO - Database tables created or already exist.
+2025-08-22 19:15:36,167 - INFO - Database tables created or already exist.
+2025-08-22 19:15:37,332 - INFO - Database tables created or already exist.
+2025-08-22 19:15:37,335 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-22 19:15:37,355 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0203s
+2025-08-22 19:15:37,357 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-22 19:15:37,573 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2154s
+2025-08-22 19:15:37,653 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-22 19:15:37,673 - ERROR - Request failed: POST http://localhost:8000/notes/ - 1 validation errors:
+  {'type': 'string_type', 'loc': ('response', 'uuid'), 'msg': 'Input should be a valid string', 'input': UUID('81c13b0e-f78e-4714-81e9-b1713acc521c')}
+Traceback (most recent call last):
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 126, in receive
+    raise EndOfStream from None
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/main.py", line 60, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 159, in call_next
+    raise app_exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 177, in serialize_response
+    raise ResponseValidationError(
+fastapi.exceptions.ResponseValidationError: 1 validation errors:
+  {'type': 'string_type', 'loc': ('response', 'uuid'), 'msg': 'Input should be a valid string', 'input': UUID('81c13b0e-f78e-4714-81e9-b1713acc521c')}
+
+2025-08-22 19:18:02,767 - INFO - Database tables created or already exist.
+2025-08-22 19:18:08,409 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-22 19:18:08,428 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0196s
+2025-08-22 19:18:08,430 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-22 19:18:08,647 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2163s
+2025-08-22 19:18:08,721 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-22 19:18:08,743 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0227s

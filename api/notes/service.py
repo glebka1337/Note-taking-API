@@ -12,33 +12,41 @@ class NoteService:
         self.parsed_children = []
         self.parsed_links = []
 
-    async def parse_and_create(self, note: Note, parsed_tags: list[str], 
-                             parsed_children: list[str], parsed_links: list[dict]):
+    async def handle_note(self, note):
         self.note = note
-        self.parsed_tags = parsed_tags
-        self.parsed_children = parsed_children
-        self.parsed_links = parsed_links
+        await self._handle_tags()
+        await self._handle_children()
+        await self._handle_links()
 
     async def _handle_tags(self):
+        # Deletes all existing tags for the note and adds new ones based on parsed tags.
         await self.db.execute(
             note_tags.delete().where(note_tags.c.note_id == self.note.id)
         )
         
+        # If there are no parsed tags, nothing more to do.
         if not self.parsed_tags:
             return
         
+        # Get unique tags to avoid duplicate inserts
         unique_tags = list(set(self.parsed_tags))
+        
+        # Create tags
         tag_values = [{"name": name, "user_id": self.note.user_id} for name in unique_tags]
         
+        # Insert tags
         stmt = pg_insert(Tag).values(tag_values).on_conflict_do_nothing()
         await self.db.execute(stmt)
 
+        # Fetch tag IDs
         result = await self.db.execute(
             select(Tag.id, Tag.name).where(
                 Tag.user_id == self.note.user_id,
                 Tag.name.in_(unique_tags)
             )
         )
+        
+        # Map tag names to IDs
         tag_map = {name: id for id, name in result.all()}
         note_tag_values = [
             {"note_id": self.note.id, "tag_id": tag_map[tag_name]} 
@@ -46,6 +54,7 @@ class NoteService:
             if tag_name in tag_map
         ]
         
+        # Bulk insert note-tag associations
         if note_tag_values:
             await self.db.execute(note_tags.insert().values(note_tag_values))
 
