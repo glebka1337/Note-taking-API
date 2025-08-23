@@ -37,10 +37,11 @@ class NoteLinkRead(BaseModel):
 class NoteRead(NoteBase):
     id: int
     uuid: UUID
+    title: str
     created_at: datetime
     updated_at: datetime
     user_id: int
-    childer_read: Optional[list["NoteChildRead"]] = Field(default_factory=list)
+    children_read: Optional[list["NoteChildRead"]] = Field(default_factory=list)
     tags_read: Optional[List["NoteTagRead"]] = Field(default_factory=list)
     links_read: Optional[List["NoteLinkRead"]] = Field(default_factory=list)
     model_config = ConfigDict(from_attributes=True)

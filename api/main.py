@@ -7,32 +7,25 @@ import time
 import logging
 from api.auth.router import router as auth_router
 
-# --- Настройка логгера с записью в файл и в консоль ---
 logger = logging.getLogger("docker_api")
 logger.setLevel(logging.INFO)
 
-# Убираем обработчики, если они уже есть (чтобы не дублировать)
 if logger.handlers:
     logger.handlers.clear()
 
-# Формат
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 
-# Handler для файла
 file_handler = logging.FileHandler("api.log", encoding="utf-8")
 file_handler.setFormatter(formatter)
 file_handler.setLevel(logging.INFO)
 
-# Handler для консоли (опционально, можно убрать, если не нужен вывод в терминал)
 console_handler = logging.StreamHandler()
 console_handler.setFormatter(formatter)
 console_handler.setLevel(logging.INFO)
 
-# Добавляем обработчики
 logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
-# --- Остальной код ---
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     async with async_engine.begin() as conn:
@@ -50,6 +43,19 @@ app = FastAPI(
 @app.get("/health", status_code=status.HTTP_200_OK)
 async def health_check():
     return {"status": "ok"}
+
+
+@app.post('/flush-db', status_code=status.HTTP_200_OK)
+async def flush_db():
+    """
+    WARNING: This endpoint will drop and recreate all database tables.
+    Use with caution, primarily for testing or development purposes.
+    """
+    async with async_engine.begin() as conn:
+        await conn.run_sync(Base.metadata.drop_all)
+        await conn.run_sync(Base.metadata.create_all)
+    logger.info("Database tables dropped and recreated.")
+    return {"status": "Database flushed and reset."}
 
 @app.middleware("http")
 async def log_requests(request: Request, call_next):

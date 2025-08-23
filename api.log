@@ -407,3 +407,861 @@ fastapi.exceptions.ResponseValidationError: 1 validation errors:
 2025-08-22 19:18:08,647 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2163s
 2025-08-22 19:18:08,721 - INFO - Request: POST http://localhost:8000/notes/
 2025-08-22 19:18:08,743 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0227s
+2025-08-23 09:40:17,997 - INFO - Database tables created or already exist.
+2025-08-23 09:40:30,291 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 09:40:30,527 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2357s
+2025-08-23 09:40:30,529 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 09:40:30,530 - INFO - Response: POST http://localhost:8000/notes/ Status: 401 Process time: 0.0009s
+2025-08-23 09:43:05,812 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 09:43:05,814 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0022s
+2025-08-23 09:43:12,529 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 09:43:12,531 - INFO - Response: POST http://localhost:8000/auth/login Status: 422 Process time: 0.0019s
+2025-08-23 09:43:23,520 - INFO - Database tables created or already exist.
+2025-08-23 09:43:49,357 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 09:43:49,377 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0198s
+2025-08-23 09:43:53,478 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 09:43:53,480 - INFO - Response: POST http://localhost:8000/auth/login Status: 422 Process time: 0.0024s
+2025-08-23 09:46:23,701 - INFO - Database tables created or already exist.
+2025-08-23 09:46:25,274 - INFO - Database tables created or already exist.
+2025-08-23 09:46:29,174 - INFO - Database tables created or already exist.
+2025-08-23 09:46:31,156 - INFO - Database tables created or already exist.
+2025-08-23 09:46:33,988 - INFO - Database tables created or already exist.
+2025-08-23 09:46:36,941 - INFO - Database tables created or already exist.
+2025-08-23 09:46:43,926 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 09:46:43,947 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0200s
+2025-08-23 09:46:43,948 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 09:46:44,165 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2166s
+2025-08-23 09:46:44,207 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 09:46:44,234 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0268s
+2025-08-23 09:46:44,276 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 09:46:44,287 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0104s
+2025-08-23 09:46:44,328 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 09:46:44,345 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0170s
+2025-08-23 10:28:59,654 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 10:28:59,656 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0019s
+2025-08-23 10:28:59,657 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 10:28:59,850 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1924s
+2025-08-23 10:28:59,892 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:28:59,901 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0089s
+2025-08-23 10:28:59,946 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:28:59,973 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0273s
+2025-08-23 10:29:00,015 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:29:00,027 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0119s
+2025-08-23 10:30:15,532 - INFO - Database tables created or already exist.
+2025-08-23 10:30:21,972 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 10:30:21,991 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0185s
+2025-08-23 10:30:21,993 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 10:30:22,209 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2167s
+2025-08-23 10:30:22,251 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:30:22,275 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0233s
+2025-08-23 10:30:22,317 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:30:22,326 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0091s
+2025-08-23 10:30:22,370 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:30:22,394 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0238s
+2025-08-23 10:30:40,022 - INFO - Database tables created or already exist.
+2025-08-23 10:30:40,435 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 10:30:40,454 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0192s
+2025-08-23 10:30:40,456 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 10:30:40,670 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2143s
+2025-08-23 10:30:40,712 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:30:40,736 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0242s
+2025-08-23 10:30:40,778 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:30:40,787 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0087s
+2025-08-23 10:30:40,828 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:30:40,843 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0152s
+2025-08-23 10:30:49,568 - INFO - Database tables created or already exist.
+2025-08-23 10:30:52,332 - INFO - Database tables created or already exist.
+2025-08-23 10:30:55,390 - INFO - Database tables created or already exist.
+2025-08-23 10:30:55,394 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 10:30:55,413 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0191s
+2025-08-23 10:30:55,415 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 10:30:55,633 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2178s
+2025-08-23 10:30:55,678 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:30:55,718 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0406s
+2025-08-23 10:30:55,760 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:30:55,769 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0091s
+2025-08-23 10:30:55,811 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:30:55,827 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0155s
+2025-08-23 10:31:08,134 - INFO - Database tables created or already exist.
+2025-08-23 10:31:13,515 - INFO - Database tables created or already exist.
+2025-08-23 10:31:16,280 - INFO - Database tables created or already exist.
+2025-08-23 10:31:18,234 - INFO - Database tables created or already exist.
+2025-08-23 10:31:18,694 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 10:31:18,713 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0191s
+2025-08-23 10:31:18,714 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 10:31:18,929 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2145s
+2025-08-23 10:31:18,971 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:31:18,997 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0258s
+2025-08-23 10:31:19,039 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:31:19,047 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0083s
+2025-08-23 10:31:19,089 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:31:19,104 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0153s
+2025-08-23 10:32:08,316 - INFO - Database tables created or already exist.
+2025-08-23 10:32:08,321 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 10:32:08,347 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0262s
+2025-08-23 10:32:08,349 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 10:32:08,568 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2183s
+2025-08-23 10:32:08,609 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:32:08,634 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0247s
+2025-08-23 10:32:08,675 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:32:08,684 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0089s
+2025-08-23 10:32:08,726 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:32:08,741 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0148s
+2025-08-23 10:32:18,544 - INFO - Database tables created or already exist.
+2025-08-23 10:32:19,924 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 10:32:19,943 - INFO - Response: POST http://localhost:8000/auth/register Status: 400 Process time: 0.0193s
+2025-08-23 10:32:19,945 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 10:32:20,161 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2161s
+2025-08-23 10:32:20,203 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:32:20,229 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0255s
+2025-08-23 10:32:20,270 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:32:20,281 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0109s
+2025-08-23 10:32:20,327 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:32:20,363 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0364s
+2025-08-23 10:34:03,275 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 10:34:03,277 - ERROR - Request failed: POST http://localhost:8000/auth/register - (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: connection is closed
+[SQL: SELECT users.id, users.username, users.email, users.hashed_password, users.created_at 
+FROM users 
+WHERE users.email = $1::VARCHAR OR users.username = $2::VARCHAR]
+[parameters: ('test@example.com', 'testuser')]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+Traceback (most recent call last):
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 838, in _start_transaction
+    self._transaction = self._connection.transaction(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/asyncpg/connection.py", line 302, in transaction
+    self._check_open()
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/asyncpg/connection.py", line 1596, in _check_open
+    raise exceptions.InterfaceError('connection is closed')
+asyncpg.exceptions._base.InterfaceError: connection is closed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 580, in execute
+    self._adapt_connection.await_(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 515, in _prepare_and_execute
+    await adapt_connection._start_transaction()
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 845, in _start_transaction
+    self._handle_exception(error)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 792, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.InterfaceError: <class 'asyncpg.exceptions._base.InterfaceError'>: connection is closed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/main.py", line 60, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 159, in call_next
+    raise app_exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/auth/router.py", line 29, in register
+    return await create_new_user(db, user_in)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/auth/services/auth_service.py", line 36, in create_new_user
+    user_in_db = await db.execute(
+                 ^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/ext/asyncio/session.py", line 463, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 580, in execute
+    self._adapt_connection.await_(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 515, in _prepare_and_execute
+    await adapt_connection._start_transaction()
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 845, in _start_transaction
+    self._handle_exception(error)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 792, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.InterfaceError: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: connection is closed
+[SQL: SELECT users.id, users.username, users.email, users.hashed_password, users.created_at 
+FROM users 
+WHERE users.email = $1::VARCHAR OR users.username = $2::VARCHAR]
+[parameters: ('test@example.com', 'testuser')]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-08-23 10:34:09,989 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 10:34:10,017 - ERROR - Request failed: POST http://localhost:8000/auth/register - (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedTableError'>: relation "users" does not exist
+[SQL: SELECT users.id, users.username, users.email, users.hashed_password, users.created_at 
+FROM users 
+WHERE users.email = $1::VARCHAR OR users.username = $2::VARCHAR]
+[parameters: ('test@example.com', 'testuser')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 521, in _prepare_and_execute
+    prepared_stmt, attributes = await adapt_connection._prepare(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 768, in _prepare
+    prepared_stmt = await self._connection.prepare(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/asyncpg/connection.py", line 635, in prepare
+    return await self._prepare(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/asyncpg/connection.py", line 653, in _prepare
+    stmt = await self._get_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/asyncpg/connection.py", line 432, in _get_statement
+    statement = await self._protocol.prepare(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 165, in prepare
+asyncpg.exceptions.UndefinedTableError: relation "users" does not exist
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 580, in execute
+    self._adapt_connection.await_(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 558, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 508, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 792, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.ProgrammingError: <class 'asyncpg.exceptions.UndefinedTableError'>: relation "users" does not exist
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/main.py", line 60, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 159, in call_next
+    raise app_exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/starlette/routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/auth/router.py", line 29, in register
+    return await create_new_user(db, user_in)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/api/auth/services/auth_service.py", line 36, in create_new_user
+    user_in_db = await db.execute(
+                 ^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/ext/asyncio/session.py", line 463, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 580, in execute
+    self._adapt_connection.await_(
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 558, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 508, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/gleb/VSCode/sandbox/fastApiDocker/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 792, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.ProgrammingError: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedTableError'>: relation "users" does not exist
+[SQL: SELECT users.id, users.username, users.email, users.hashed_password, users.created_at 
+FROM users 
+WHERE users.email = $1::VARCHAR OR users.username = $2::VARCHAR]
+[parameters: ('test@example.com', 'testuser')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-23 10:35:40,380 - INFO - Database tables created or already exist.
+2025-08-23 10:35:53,777 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 10:35:54,012 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2352s
+2025-08-23 10:35:54,014 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:35:54,015 - INFO - Response: POST http://localhost:8000/notes/ Status: 401 Process time: 0.0009s
+2025-08-23 10:37:20,082 - INFO - Database tables created or already exist.
+2025-08-23 10:37:22,073 - INFO - Database tables created or already exist.
+2025-08-23 10:37:23,287 - INFO - Database tables created or already exist.
+2025-08-23 10:37:27,204 - INFO - Database tables created or already exist.
+2025-08-23 10:37:28,402 - INFO - Database tables created or already exist.
+2025-08-23 10:37:31,102 - INFO - Database tables created or already exist.
+2025-08-23 10:37:33,068 - INFO - Database tables created or already exist.
+2025-08-23 10:37:40,683 - INFO - Database tables created or already exist.
+2025-08-23 10:37:49,257 - INFO - Database tables created or already exist.
+2025-08-23 10:37:50,810 - INFO - Database tables created or already exist.
+2025-08-23 10:37:53,887 - INFO - Database tables created or already exist.
+2025-08-23 10:37:55,857 - INFO - Database tables created or already exist.
+2025-08-23 10:38:00,876 - INFO - Database tables created or already exist.
+2025-08-23 10:38:02,736 - INFO - Database tables created or already exist.
+2025-08-23 10:38:08,455 - INFO - Database tables created or already exist.
+2025-08-23 10:38:10,720 - INFO - Database tables created or already exist.
+2025-08-23 10:38:11,878 - INFO - Database tables created or already exist.
+2025-08-23 10:38:35,087 - INFO - Database tables created or already exist.
+2025-08-23 10:38:36,278 - INFO - Database tables created or already exist.
+2025-08-23 10:38:37,826 - INFO - Database tables created or already exist.
+2025-08-23 10:38:41,581 - INFO - Database tables created or already exist.
+2025-08-23 10:38:48,484 - INFO - Database tables created or already exist.
+2025-08-23 10:38:52,327 - INFO - Database tables created or already exist.
+2025-08-23 10:40:41,014 - INFO - Database tables created or already exist.
+2025-08-23 10:40:47,812 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 10:40:47,868 - INFO - Database tables dropped and recreated.
+2025-08-23 10:40:47,868 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0557s
+2025-08-23 10:40:47,870 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 10:40:48,107 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2367s
+2025-08-23 10:40:48,148 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:40:48,149 - INFO - Response: POST http://localhost:8000/notes/ Status: 401 Process time: 0.0012s
+2025-08-23 10:41:12,335 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 10:41:12,392 - INFO - Database tables dropped and recreated.
+2025-08-23 10:41:12,392 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0574s
+2025-08-23 10:41:21,361 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 10:41:21,559 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.1984s
+2025-08-23 10:41:53,131 - INFO - Database tables created or already exist.
+2025-08-23 10:42:03,424 - INFO - Database tables created or already exist.
+2025-08-23 10:42:06,585 - INFO - Database tables created or already exist.
+2025-08-23 10:42:08,548 - INFO - Database tables created or already exist.
+2025-08-23 10:42:10,500 - INFO - Database tables created or already exist.
+2025-08-23 10:42:15,156 - INFO - Database tables created or already exist.
+2025-08-23 10:42:17,512 - INFO - Database tables created or already exist.
+2025-08-23 10:42:28,717 - INFO - Database tables created or already exist.
+2025-08-23 10:42:30,748 - INFO - Database tables created or already exist.
+2025-08-23 10:42:32,193 - INFO - Database tables created or already exist.
+2025-08-23 10:42:41,956 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 10:42:42,011 - INFO - Database tables dropped and recreated.
+2025-08-23 10:42:42,012 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0557s
+2025-08-23 10:42:42,014 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 10:42:42,252 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2379s
+2025-08-23 10:42:42,293 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 10:42:42,489 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1961s
+2025-08-23 10:42:42,531 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:42:42,556 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0253s
+2025-08-23 10:42:42,598 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:42:42,608 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0096s
+2025-08-23 10:42:42,650 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:42:42,665 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0147s
+2025-08-23 10:46:44,945 - INFO - Database tables created or already exist.
+2025-08-23 10:47:37,884 - INFO - Database tables created or already exist.
+2025-08-23 10:47:42,812 - INFO - Database tables created or already exist.
+2025-08-23 10:51:19,379 - INFO - Database tables created or already exist.
+2025-08-23 10:51:23,242 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 10:51:23,304 - INFO - Database tables dropped and recreated.
+2025-08-23 10:51:23,305 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0632s
+2025-08-23 10:51:23,308 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 10:51:23,578 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2703s
+2025-08-23 10:51:23,620 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 10:51:23,822 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2014s
+2025-08-23 10:51:23,864 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 10:51:53,004 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 29.1396s
+2025-08-23 12:18:44,511 - INFO - Database tables created or already exist.
+2025-08-23 12:19:05,939 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 12:19:06,002 - INFO - Database tables dropped and recreated.
+2025-08-23 12:19:06,003 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0636s
+2025-08-23 12:19:06,006 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 12:19:06,295 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2887s
+2025-08-23 12:19:06,337 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 12:19:06,539 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2026s
+2025-08-23 12:19:06,582 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:19:25,354 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 14.6162s
+2025-08-23 12:20:27,257 - INFO - Database tables created or already exist.
+2025-08-23 12:21:51,632 - INFO - Database tables created or already exist.
+2025-08-23 12:22:05,542 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 12:22:05,599 - INFO - Database tables dropped and recreated.
+2025-08-23 12:22:05,599 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0573s
+2025-08-23 12:22:05,601 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 12:22:05,835 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2343s
+2025-08-23 12:22:05,878 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 12:22:06,106 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2276s
+2025-08-23 12:22:06,148 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:22:06,171 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0237s
+2025-08-23 12:22:06,213 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:22:06,225 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0119s
+2025-08-23 12:22:06,267 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:22:06,284 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0171s
+2025-08-23 12:22:36,035 - INFO - Database tables created or already exist.
+2025-08-23 12:22:37,995 - INFO - Database tables created or already exist.
+2025-08-23 12:22:41,073 - INFO - Database tables created or already exist.
+2025-08-23 12:22:45,061 - INFO - Database tables created or already exist.
+2025-08-23 12:22:47,456 - INFO - Database tables created or already exist.
+2025-08-23 12:22:48,129 - INFO - Database tables created or already exist.
+2025-08-23 12:22:51,616 - INFO - Database tables created or already exist.
+2025-08-23 12:22:55,213 - INFO - Database tables created or already exist.
+2025-08-23 12:22:56,370 - INFO - Database tables created or already exist.
+2025-08-23 12:23:24,056 - INFO - Database tables created or already exist.
+2025-08-23 12:23:25,625 - INFO - Database tables created or already exist.
+2025-08-23 12:23:33,132 - INFO - Database tables created or already exist.
+2025-08-23 12:23:35,382 - INFO - Database tables created or already exist.
+2025-08-23 12:23:50,765 - INFO - Database tables created or already exist.
+2025-08-23 12:23:55,111 - INFO - Database tables created or already exist.
+2025-08-23 12:24:03,172 - INFO - Database tables created or already exist.
+2025-08-23 12:24:11,755 - INFO - Database tables created or already exist.
+2025-08-23 12:24:13,701 - INFO - Database tables created or already exist.
+2025-08-23 12:24:15,306 - INFO - Database tables created or already exist.
+2025-08-23 12:24:18,386 - INFO - Database tables created or already exist.
+2025-08-23 12:24:20,752 - INFO - Database tables created or already exist.
+2025-08-23 12:24:24,772 - INFO - Database tables created or already exist.
+2025-08-23 12:24:29,334 - INFO - Database tables created or already exist.
+2025-08-23 12:24:32,092 - INFO - Database tables created or already exist.
+2025-08-23 12:24:36,494 - INFO - Database tables created or already exist.
+2025-08-23 12:24:38,036 - INFO - Database tables created or already exist.
+2025-08-23 12:24:40,696 - INFO - Database tables created or already exist.
+2025-08-23 12:24:42,288 - INFO - Database tables created or already exist.
+2025-08-23 12:24:43,861 - INFO - Database tables created or already exist.
+2025-08-23 12:24:45,056 - INFO - Database tables created or already exist.
+2025-08-23 12:24:46,646 - INFO - Database tables created or already exist.
+2025-08-23 12:24:51,654 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 12:24:51,711 - INFO - Database tables dropped and recreated.
+2025-08-23 12:24:51,711 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0569s
+2025-08-23 12:24:51,713 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 12:24:51,948 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2357s
+2025-08-23 12:24:51,991 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 12:24:52,188 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1975s
+2025-08-23 12:24:52,229 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:24:52,255 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0253s
+2025-08-23 12:24:52,297 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:24:52,312 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0146s
+2025-08-23 12:24:52,354 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:24:52,378 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0236s
+2025-08-23 12:25:17,226 - INFO - Database tables created or already exist.
+2025-08-23 12:25:25,384 - INFO - Database tables created or already exist.
+2025-08-23 12:25:28,222 - INFO - Database tables created or already exist.
+2025-08-23 12:25:34,307 - INFO - Database tables created or already exist.
+2025-08-23 12:25:35,450 - INFO - Database tables created or already exist.
+2025-08-23 12:25:38,732 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 12:25:38,786 - INFO - Database tables dropped and recreated.
+2025-08-23 12:25:38,787 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0542s
+2025-08-23 12:25:38,788 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 12:25:39,022 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2336s
+2025-08-23 12:25:39,065 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 12:25:39,264 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1993s
+2025-08-23 12:25:39,305 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:25:39,329 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0237s
+2025-08-23 12:25:39,372 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:25:39,382 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0105s
+2025-08-23 12:25:39,424 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:25:39,442 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0184s
+2025-08-23 12:25:52,915 - INFO - Database tables created or already exist.
+2025-08-23 12:25:57,238 - INFO - Database tables created or already exist.
+2025-08-23 12:25:58,863 - INFO - Database tables created or already exist.
+2025-08-23 12:26:00,845 - INFO - Database tables created or already exist.
+2025-08-23 12:26:05,117 - INFO - Database tables created or already exist.
+2025-08-23 12:26:09,106 - INFO - Database tables created or already exist.
+2025-08-23 12:26:11,978 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 12:26:12,032 - INFO - Database tables dropped and recreated.
+2025-08-23 12:26:12,032 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0544s
+2025-08-23 12:26:12,034 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 12:26:12,269 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2352s
+2025-08-23 12:26:12,311 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 12:26:12,506 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1942s
+2025-08-23 12:26:12,549 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:26:12,581 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0315s
+2025-08-23 12:26:12,622 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:26:12,633 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0103s
+2025-08-23 12:26:12,675 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:26:12,696 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0211s
+2025-08-23 12:26:47,877 - INFO - Database tables created or already exist.
+2025-08-23 12:26:55,641 - INFO - Database tables created or already exist.
+2025-08-23 12:26:58,030 - INFO - Database tables created or already exist.
+2025-08-23 12:27:01,477 - INFO - Database tables created or already exist.
+2025-08-23 12:27:02,617 - INFO - Database tables created or already exist.
+2025-08-23 12:27:09,753 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 12:27:09,806 - INFO - Database tables dropped and recreated.
+2025-08-23 12:27:09,807 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0536s
+2025-08-23 12:27:09,808 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 12:27:10,044 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2360s
+2025-08-23 12:27:10,089 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 12:27:10,311 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2214s
+2025-08-23 12:27:10,353 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:27:10,377 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0243s
+2025-08-23 12:27:10,419 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:27:10,430 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0111s
+2025-08-23 12:27:10,472 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:27:10,494 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0221s
+2025-08-23 12:27:53,397 - INFO - Database tables created or already exist.
+2025-08-23 12:27:55,336 - INFO - Database tables created or already exist.
+2025-08-23 12:28:00,819 - INFO - Database tables created or already exist.
+2025-08-23 12:28:02,386 - INFO - Database tables created or already exist.
+2025-08-23 12:28:05,586 - INFO - Database tables created or already exist.
+2025-08-23 12:32:58,834 - INFO - Database tables created or already exist.
+2025-08-23 12:33:07,016 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 12:33:07,077 - INFO - Database tables dropped and recreated.
+2025-08-23 12:33:07,078 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0614s
+2025-08-23 12:33:07,081 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 12:33:07,353 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2723s
+2025-08-23 12:33:07,395 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 12:33:07,598 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2035s
+2025-08-23 12:33:07,641 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:33:21,846 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 11.6804s
+2025-08-23 12:33:24,712 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:33:30,736 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 6.7463s
+2025-08-23 12:33:30,789 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:33:33,659 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 2.8693s
+2025-08-23 12:33:50,530 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 12:33:50,592 - INFO - Database tables dropped and recreated.
+2025-08-23 12:33:50,593 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0623s
+2025-08-23 12:33:50,596 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 12:33:50,798 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2029s
+2025-08-23 12:33:50,841 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 12:33:51,038 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1967s
+2025-08-23 12:33:51,084 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:33:56,516 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 5.4324s
+2025-08-23 12:33:56,561 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:33:59,017 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 2.4564s
+2025-08-23 12:33:59,062 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:39:43,548 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 341.9146s
+2025-08-23 12:40:10,986 - INFO - Database tables created or already exist.
+2025-08-23 12:40:16,051 - INFO - Database tables created or already exist.
+2025-08-23 12:40:22,557 - INFO - Database tables created or already exist.
+2025-08-23 12:40:25,599 - INFO - Database tables created or already exist.
+2025-08-23 12:40:25,609 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 12:40:25,671 - INFO - Database tables dropped and recreated.
+2025-08-23 12:40:25,671 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0625s
+2025-08-23 12:40:25,674 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 12:40:25,946 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2720s
+2025-08-23 12:40:25,989 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 12:40:26,192 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2035s
+2025-08-23 12:40:26,234 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:40:54,650 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 25.7895s
+2025-08-23 12:40:58,852 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:41:17,003 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 16.7097s
+2025-08-23 12:41:20,934 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:41:35,355 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 12.9816s
+2025-08-23 12:58:24,009 - INFO - Database tables created or already exist.
+2025-08-23 12:58:29,034 - INFO - Database tables created or already exist.
+2025-08-23 12:58:31,997 - INFO - Database tables created or already exist.
+2025-08-23 12:58:34,976 - INFO - Database tables created or already exist.
+2025-08-23 12:58:44,940 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 12:58:45,008 - INFO - Database tables dropped and recreated.
+2025-08-23 12:58:45,009 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0690s
+2025-08-23 12:58:45,012 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 12:58:45,289 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2773s
+2025-08-23 12:58:45,335 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 12:58:45,544 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2094s
+2025-08-23 12:58:45,589 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:59:18,076 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 32.4868s
+2025-08-23 12:59:18,119 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:59:18,137 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0184s
+2025-08-23 12:59:18,181 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 12:59:18,207 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0260s
+2025-08-23 13:02:08,657 - INFO - Database tables created or already exist.
+2025-08-23 13:02:11,635 - INFO - Database tables created or already exist.
+2025-08-23 13:02:11,646 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 13:02:11,707 - INFO - Database tables dropped and recreated.
+2025-08-23 13:02:11,708 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0626s
+2025-08-23 13:02:11,711 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 13:02:11,982 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2709s
+2025-08-23 13:02:12,024 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 13:02:12,228 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2039s
+2025-08-23 13:02:12,270 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:02:16,235 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 3.9654s
+2025-08-23 13:02:16,278 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:02:16,927 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.6489s
+2025-08-23 13:02:16,969 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:02:17,447 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.4786s
+2025-08-23 13:02:43,942 - INFO - Database tables created or already exist.
+2025-08-23 13:02:44,424 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 13:02:44,485 - INFO - Database tables dropped and recreated.
+2025-08-23 13:02:44,486 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0617s
+2025-08-23 13:02:44,488 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 13:02:44,761 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2726s
+2025-08-23 13:02:44,803 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 13:02:45,011 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2076s
+2025-08-23 13:02:45,053 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:03:02,893 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 15.7937s
+2025-08-23 13:03:04,935 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:03:20,677 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 13.8431s
+2025-08-23 13:03:23,195 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:03:44,429 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 21.7798s
+2025-08-23 13:04:37,542 - INFO - Database tables created or already exist.
+2025-08-23 13:04:40,583 - INFO - Database tables created or already exist.
+2025-08-23 13:05:06,044 - INFO - Database tables created or already exist.
+2025-08-23 13:05:12,366 - INFO - Database tables created or already exist.
+2025-08-23 13:05:15,436 - INFO - Database tables created or already exist.
+2025-08-23 13:05:18,543 - INFO - Database tables created or already exist.
+2025-08-23 13:05:22,133 - INFO - Database tables created or already exist.
+2025-08-23 13:05:25,253 - INFO - Database tables created or already exist.
+2025-08-23 13:05:29,897 - INFO - Database tables created or already exist.
+2025-08-23 13:05:32,885 - INFO - Database tables created or already exist.
+2025-08-23 13:05:39,274 - INFO - Database tables created or already exist.
+2025-08-23 13:05:42,279 - INFO - Database tables created or already exist.
+2025-08-23 13:05:47,705 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 13:05:47,768 - INFO - Database tables dropped and recreated.
+2025-08-23 13:05:47,769 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0634s
+2025-08-23 13:05:47,772 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 13:05:48,042 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2701s
+2025-08-23 13:05:48,084 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 13:05:48,283 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1996s
+2025-08-23 13:05:48,326 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:05:57,931 - INFO - Response: POST http://localhost:8000/notes/ Status: 500 Process time: 9.6049s
+2025-08-23 13:06:02,668 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 13:06:02,729 - INFO - Database tables dropped and recreated.
+2025-08-23 13:06:02,730 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0614s
+2025-08-23 13:06:02,732 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 13:06:02,935 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2027s
+2025-08-23 13:06:02,980 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 13:06:03,216 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2369s
+2025-08-23 13:06:03,259 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:06:10,346 - INFO - Response: POST http://localhost:8000/notes/ Status: 500 Process time: 7.0872s
+2025-08-23 13:07:10,224 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 13:07:10,289 - INFO - Database tables dropped and recreated.
+2025-08-23 13:07:10,290 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0657s
+2025-08-23 13:07:10,293 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 13:07:10,503 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2096s
+2025-08-23 13:07:10,545 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 13:07:10,743 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1979s
+2025-08-23 13:07:10,789 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:08:13,308 - INFO - Response: POST http://localhost:8000/notes/ Status: 500 Process time: 62.5186s
+2025-08-23 13:08:23,138 - INFO - Database tables created or already exist.
+2025-08-23 13:08:23,148 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 13:08:23,209 - INFO - Database tables dropped and recreated.
+2025-08-23 13:08:23,210 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0616s
+2025-08-23 13:08:23,212 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 13:08:23,483 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2712s
+2025-08-23 13:08:23,526 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 13:08:23,727 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2016s
+2025-08-23 13:08:23,770 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:08:44,305 - INFO - Response: POST http://localhost:8000/notes/ Status: 500 Process time: 20.5351s
+2025-08-23 13:09:12,728 - INFO - Database tables created or already exist.
+2025-08-23 13:09:30,264 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 13:09:30,326 - INFO - Database tables dropped and recreated.
+2025-08-23 13:09:30,327 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0633s
+2025-08-23 13:09:30,330 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 13:09:30,601 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2713s
+2025-08-23 13:09:30,643 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 13:09:30,845 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2021s
+2025-08-23 13:09:30,887 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:09:40,257 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 9.3701s
+2025-08-23 13:09:40,299 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:09:40,980 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.6812s
+2025-08-23 13:09:41,023 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:09:41,577 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.5541s
+2025-08-23 13:09:55,200 - INFO - Database tables created or already exist.
+2025-08-23 13:09:58,218 - INFO - Database tables created or already exist.
+2025-08-23 13:11:07,557 - INFO - Database tables created or already exist.
+2025-08-23 13:11:34,159 - INFO - Database tables created or already exist.
+2025-08-23 13:11:39,327 - INFO - Database tables created or already exist.
+2025-08-23 13:11:42,264 - INFO - Database tables created or already exist.
+2025-08-23 13:11:42,275 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 13:11:42,336 - INFO - Database tables dropped and recreated.
+2025-08-23 13:11:42,337 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0627s
+2025-08-23 13:11:42,340 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 13:11:42,620 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2802s
+2025-08-23 13:11:42,662 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 13:11:42,864 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2028s
+2025-08-23 13:11:42,907 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:12:04,349 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 21.4426s
+2025-08-23 13:12:04,393 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:12:05,615 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 1.2223s
+2025-08-23 13:12:05,659 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:12:16,939 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 11.2804s
+2025-08-23 13:12:28,839 - INFO - Database tables created or already exist.
+2025-08-23 13:12:37,982 - INFO - Database tables created or already exist.
+2025-08-23 13:12:39,187 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 13:12:39,247 - INFO - Database tables dropped and recreated.
+2025-08-23 13:12:39,248 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0606s
+2025-08-23 13:12:39,250 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 13:12:39,520 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2696s
+2025-08-23 13:12:39,562 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 13:12:39,764 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.2026s
+2025-08-23 13:12:39,807 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:12:46,129 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 4.3697s
+2025-08-23 13:12:48,021 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:12:54,399 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 4.5420s
+2025-08-23 13:12:56,198 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:13:05,936 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 7.8350s
+2025-08-23 13:13:26,798 - INFO - Database tables created or already exist.
+2025-08-23 13:13:29,871 - INFO - Database tables created or already exist.
+2025-08-23 13:13:32,922 - INFO - Database tables created or already exist.
+2025-08-23 13:13:39,587 - INFO - Database tables created or already exist.
+2025-08-23 13:14:21,987 - INFO - Database tables created or already exist.
+2025-08-23 13:14:44,970 - INFO - Database tables created or already exist.
+2025-08-23 13:14:53,795 - INFO - Database tables created or already exist.
+2025-08-23 13:14:56,860 - INFO - Database tables created or already exist.
+2025-08-23 13:15:01,389 - INFO - Database tables created or already exist.
+2025-08-23 13:15:10,726 - INFO - Database tables created or already exist.
+2025-08-23 13:15:16,440 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 13:15:16,495 - INFO - Database tables dropped and recreated.
+2025-08-23 13:15:16,496 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0559s
+2025-08-23 13:15:16,498 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 13:15:16,732 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2336s
+2025-08-23 13:15:16,774 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 13:15:16,972 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1987s
+2025-08-23 13:15:17,017 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:15:17,109 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0918s
+2025-08-23 13:15:17,152 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:15:17,162 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0107s
+2025-08-23 13:15:17,205 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:15:17,228 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0238s
+2025-08-23 13:15:54,816 - INFO - Database tables created or already exist.
+2025-08-23 13:16:01,915 - INFO - Database tables created or already exist.
+2025-08-23 13:16:47,346 - INFO - Database tables created or already exist.
+2025-08-23 13:16:51,230 - INFO - Database tables created or already exist.
+2025-08-23 13:16:53,605 - INFO - Database tables created or already exist.
+2025-08-23 13:16:57,489 - INFO - Database tables created or already exist.
+2025-08-23 13:17:06,725 - INFO - Database tables created or already exist.
+2025-08-23 13:17:14,738 - INFO - Database tables created or already exist.
+2025-08-23 13:17:16,298 - INFO - Database tables created or already exist.
+2025-08-23 13:17:17,914 - INFO - Database tables created or already exist.
+2025-08-23 13:17:19,469 - INFO - Database tables created or already exist.
+2025-08-23 13:17:19,474 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 13:17:19,530 - INFO - Database tables dropped and recreated.
+2025-08-23 13:17:19,530 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0558s
+2025-08-23 13:17:19,532 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 13:17:19,779 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2472s
+2025-08-23 13:17:19,821 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 13:17:20,019 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1986s
+2025-08-23 13:17:20,064 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:17:20,117 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0532s
+2025-08-23 13:17:20,162 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:17:20,201 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0396s
+2025-08-23 13:17:20,244 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:17:20,264 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0206s
+2025-08-23 13:17:56,427 - INFO - Database tables created or already exist.
+2025-08-23 13:18:05,449 - INFO - Database tables created or already exist.
+2025-08-23 13:18:08,550 - INFO - Database tables created or already exist.
+2025-08-23 13:18:10,394 - INFO - Database tables created or already exist.
+2025-08-23 13:18:12,169 - INFO - Request: POST http://localhost:8000/flush-db
+2025-08-23 13:18:12,224 - INFO - Database tables dropped and recreated.
+2025-08-23 13:18:12,224 - INFO - Response: POST http://localhost:8000/flush-db Status: 200 Process time: 0.0555s
+2025-08-23 13:18:12,226 - INFO - Request: POST http://localhost:8000/auth/register
+2025-08-23 13:18:12,459 - INFO - Response: POST http://localhost:8000/auth/register Status: 200 Process time: 0.2327s
+2025-08-23 13:18:12,502 - INFO - Request: POST http://localhost:8000/auth/login
+2025-08-23 13:18:12,700 - INFO - Response: POST http://localhost:8000/auth/login Status: 200 Process time: 0.1983s
+2025-08-23 13:18:12,742 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:18:12,766 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0243s
+2025-08-23 13:18:12,808 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:18:12,817 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0092s
+2025-08-23 13:18:12,860 - INFO - Request: POST http://localhost:8000/notes/
+2025-08-23 13:18:12,879 - INFO - Response: POST http://localhost:8000/notes/ Status: 200 Process time: 0.0196s
+2025-08-23 13:21:43,304 - INFO - Database tables created or already exist.
+2025-08-23 13:21:46,792 - INFO - Database tables created or already exist.
+2025-08-23 13:21:50,288 - INFO - Database tables created or already exist.
+2025-08-23 13:22:04,390 - INFO - Database tables created or already exist.
+2025-08-23 13:22:07,482 - INFO - Database tables created or already exist.

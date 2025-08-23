@@ -7,9 +7,9 @@ from api.auth.schemas import UserOut
 from api.auth.services.auth_service import get_current_user
 from api.core.db import get_session
 from api.core.models import CrossLink, Note
-from api.notes.schemas import NoteRead, NoteCreate, NoteUpdate
+from api.notes.schemas import NoteChildRead, NoteLinkRead, NoteRead, NoteCreate, NoteTagRead, NoteUpdate
 from api.notes.service import NoteService
-from api.notes.utils import NoteParser, get_note_by_id, get_note_with_relations
+from api.notes.utils import NoteParser, check_note_title_unique, create_note_read_response, get_note_by_id, get_note_with_relations
 from sqlalchemy.orm import selectinload
 
 router = APIRouter(prefix="/notes", tags=["notes"])
@@ -22,6 +22,19 @@ async def create_note(
     user: UserOut = Depends(get_current_user),
 ):
     try:
+        is_title_unique = await check_note_title_unique(
+            title=note_in.title,
+            parent_id=note_in.parent_id,
+            user_id=user.id,
+            db=db
+        )
+        
+        if not is_title_unique:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Note with title '{note_in.title}' already exists in this folder"
+            )
+        
         note_data = note_in.model_dump()
         note = Note(**note_data, user_id=user.id, uuid=uuid4())
         db.add(note)
@@ -38,18 +51,18 @@ async def create_note(
         await service.handle_note(note)
 
         await db.commit()
-        #  Return the note with relationships loaded
+        await db.refresh(note)
         
-        return await get_note_with_relations(
-            note_id=note.id, user_id=user.id, db=db
-        )
+        note_obj = await get_note_with_relations(note.id, user.id, db)
+        
+        return create_note_read_response(note_obj)
+        
     except Exception as e:
         await db.rollback()
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Failed to create note: {str(e)}"
         )
-
 
 
 @router.get("/", response_model=list[NoteRead])
@@ -121,9 +134,11 @@ async def update_note(
         
         await db.commit()
         
-        return await get_note_with_relations(
+        note_obj =  await get_note_with_relations(
             note_id=note.id, user_id=user.id, db=db
         )
+        
+        return create_note_read_response(note_obj)
         
     except Exception as e:
         await db.rollback()
