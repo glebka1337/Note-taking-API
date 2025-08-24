@@ -17,6 +17,7 @@ class NoteCreate(NoteBase):
 class NoteUpdate(BaseModel):
     title: Optional[str] = None
     content: Optional[str] = None
+    parent_id: Optional[int] = None
     model_config = ConfigDict(from_attributes=True)
 
 class NoteChildRead(BaseModel):
@@ -47,4 +48,14 @@ class NoteRead(NoteBase):
     model_config = ConfigDict(from_attributes=True)
 
 
-    
+class NoteShallowRead(NoteBase):
+    """
+    Model resonsible for reading a note without children notes, links and etc.
+    """
+    id: int
+    uuid: UUID
+    title: str
+    created_at: datetime
+    updated_at: datetime
+    user_id: int
+    model_config = ConfigDict(from_attributes=True)

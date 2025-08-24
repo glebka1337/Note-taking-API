@@ -1,4 +1,6 @@
+from typing import List, Set
 from uuid import uuid4
+import uuid
 from sqlalchemy import delete, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from api.core.models import CrossLink, Note, Tag, note_tags
@@ -59,47 +61,71 @@ class NoteService:
             await self.db.execute(note_tags.insert().values(note_tag_values))
 
     async def _handle_children(self):
-
         """
-        Updates children of the note. If there are no children, all links to children are deleted.
-        Otherwise, it takes the list of children titles, and:
-        - If the title doesn't exist as a child, it creates a new note with this title and links to it.
-        - If the title already exists as a child, it creates a new title by appending a counter to the end
-          of the title.
-        """
-        if not self.parsed_children:
-            await self.db.execute(
-                update(Note)
-                .where(Note.parent_id == self.note.id)
-                .values(parent_id=None)
-            )
-            return
+        Updates children relationships for a note.
 
-        result = await self.db.execute(
-            select(Note.title).where(
-                Note.user_id == self.note.user_id, 
-                Note.parent_id == self.note.id
-            )
+        - Deletes any existing children that are no longer referenced in the new content.
+        - Creates new notes for any new children titles referenced.
+        """
+        
+        # 1. Получаем список всех существующих дочерних заметок
+        existing_children_result = await self.db.execute(
+            select(Note).where(Note.parent_id == self.note.id)
         )
-        existing_titles = {title for (title,) in result.all()}
+        existing_children = existing_children_result.scalars().all()
+        
+        existing_titles = {child.title for child in existing_children}
+        parsed_titles = set(self.parsed_children)
+        
+        # 2. Определяем заметки для удаления (те, что есть в БД, но нет в распарсенном контенте)
+        titles_to_delete: Set[str] = existing_titles.difference(parsed_titles)
+        
+        if titles_to_delete:
+            # Получаем UUID заметок для удаления
+            notes_to_delete_result = await self.db.execute(
+                select(Note.uuid).where(
+                    Note.parent_id == self.note.id,
+                    Note.title.in_(titles_to_delete)
+                )
+            )
+            note_uuids_to_delete = notes_to_delete_result.scalars().all()
+            
+            # Удаляем заметки по UUID
+            await self.db.execute(
+                delete(Note).where(Note.uuid.in_(note_uuids_to_delete))
+            )
+            
 
-        for child_title in self.parsed_children:
+        # 3. Находим "новые" дочерние заметки (те, что в контенте, но которых ещё нет в БД как дочерних)
+        titles_to_create: Set[str] = parsed_titles.difference(existing_titles)
+        
+        # 4. Создаем новые заметки для каждого нового названия
+        for child_title in titles_to_create:
             new_title = child_title
             counter = 2
             
-            while new_title in existing_titles:
+            # Проверяем на уникальность заголовка
+            while True:
+                existing_note_check = await self.db.execute(
+                    select(Note).where(
+                        Note.title == new_title,
+                        Note.user_id == self.note.user_id
+                    )
+                )
+                if existing_note_check.scalar_one_or_none() is None:
+                    break
+                
                 new_title = f"{child_title} ({counter})"
                 counter += 1
-
+                
             new_child = Note(
                 title=new_title,
                 content="",
                 user_id=self.note.user_id,
                 parent_id=self.note.id,
-                uuid=str(uuid4())
+                uuid=str(uuid.uuid4())
             )
             self.db.add(new_child)
-            existing_titles.add(new_title)
 
     async def _handle_links(self):
         """

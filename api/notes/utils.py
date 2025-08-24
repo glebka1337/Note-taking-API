@@ -48,45 +48,7 @@ class NoteParser:
         matches = re.findall(pattern, self.content)
         return [m.strip() for m in matches]
 
-async def get_note_by_id(
-    note_id: int,
-    user_id: int,
-    db: AsyncSession = Depends(get_session)    
-) -> Note:
-    result = await db.execute(
-        select(Note).where(and_(Note.id == note_id, Note.user_id == user_id))
-    )
-    note = result.scalar_one_or_none()
-    if not note:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Note not found"
-        )
-    return note
 
-async def get_note_with_relations(
-    note_id: int,
-    user_id: int,
-    db: AsyncSession = Depends(get_session)
-) -> Note:
-    """
-    Loads a note with all its relationships using eager loading to avoid N+1 queries.
-    """
-    result = await db.execute(  # ← сохраняем как result
-        select(Note)
-        .where(Note.id == note_id, Note.user_id == user_id)
-        .options(
-            selectinload(Note.children),
-            selectinload(Note.tags),
-            selectinload(Note.linked_notes).joinedload(CrossLink.linked_note),
-        )
-    )
-    note = result.scalar_one_or_none()  
-    
-    if not note:
-        return None
-    
-    return note 
 
 def create_note_read_response(note_obj: Note) -> NoteRead:
     children = [
@@ -124,15 +86,15 @@ def create_note_read_response(note_obj: Note) -> NoteRead:
         links_read=links
     )
     
-async def check_note_title_unique(
+async def check_note_title_unique_or_400(
     title: str,
     parent_id: Optional[int],
     user_id: int,
     db: AsyncSession
-) -> bool:
+):
     """
     Checks if a note with given title, parent_id and user_id already exists in the database.
-    Returns True if it does not exist, False otherwise.
+    Raises HTTPException if note exists
     """
     query = select(Note).where(
         Note.title == title,
@@ -141,6 +103,9 @@ async def check_note_title_unique(
     )
     
     result = await db.execute(query)
-    existing_note = result.scalar_one_or_none()
-    
-    return existing_note is None
+    note = result.scalar_one_or_none()
+    if note is not None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Note with this title already exists in the same folder"
+        )

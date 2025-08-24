@@ -3,9 +3,12 @@ from httpx import AsyncClient
 from api.core.db import Base, async_engine
 @pytest_asyncio.fixture
 async def async_client():
-
-    async with AsyncClient(base_url="http://localhost:8000") as client:
+    async with AsyncClient(base_url="http://localhost:8000", timeout=1000) as client:
         yield client
+
+async def drop_dev_db(async_client: AsyncClient):
+    response = await async_client.post("/flush-db")
+    print("✅ Development database dropped and recreated. Ready for tests.")
 
 @pytest_asyncio.fixture(scope="function", autouse=True)
 async def flush_db():
@@ -13,11 +16,10 @@ async def flush_db():
     Flush DB before each test (drop + create tables).
     Ensures clean state for every test.
     """
-    async with async_engine.begin() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
-        await conn.run_sync(Base.metadata.create_all)
-    yield
-    
+    async with AsyncClient(
+        base_url='http://localhost:8000',
+    ) as client:
+        await drop_dev_db(async_client=client)
 
 @pytest_asyncio.fixture
 async def access_token(async_client: AsyncClient) -> str:
