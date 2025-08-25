@@ -7,8 +7,8 @@ from sqlalchemy import select
 from api.auth.schemas import UserOut
 from api.auth.services.auth_service import get_current_user
 from api.core.db import get_session
-from api.core.models import Note
-from api.notes.schemas import NoteRead, NoteCreate, NoteShallowRead, NoteTagRead, NoteUpdate
+from api.core.models import CrossLink, Note, note_tags
+from api.notes.schemas import NoteCrossLinkRead, NoteRead, NoteCreate, NoteShallowRead, NoteTagAssociationRead, NoteTagRead, NoteUpdate
 from api.notes.services.note_delete_service import NoteDeleteService
 from api.notes.services.note_service import NoteService
 from api.notes.utils import NoteParser, check_note_title_unique_or_400, create_note_read_response
@@ -201,28 +201,77 @@ async def delete_note(
     
     return {"message": "Note deleted successfully."}
 
-# @router.get("/{note_id}/linked_notes")
-# async def get_linked_notes(
-#     note_id: int,
-#     db: AsyncSession = Depends(get_session),
-#     user: UserOut = Depends(get_current_user),
-# ):
-#     note = await get_note_by_id(note_id, user.id, db)
-#     result = await db.execute(
-#         select(Note).where(Note.id.in_([n.id for n in note.linked_notes]))
-#     )
-#     notes = result.scalars().all()
-#     return [{"id": n.id, "slug": n.slug, "title": n.title} for n in notes]
+@router.get('/{note_uuid}/backlinks', response_model=list[NoteCrossLinkRead])
+async def get_note_backlinks(
+    note_uuid: UUID,
+    db: AsyncSession = Depends(get_session),
+    user: UserOut = Depends(get_current_user),
+    
+):
+    """
+    Returns a list of notes that refer to the note with the given uuid
+    """
+    note = await get_note_by("uuid", note_uuid, user.id, db)
+    if not note:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Note not found"
+        )
+    
+    backlinks = await db.execute(
+        select(CrossLink).\
+            where(
+                CrossLink.linked_note_id == note.id,
+            )
+    )
+    return backlinks
 
-# @router.get("/{note_id}/backlinks")
-# async def get_backlinks(
-#     note_id: int,
-#     db: AsyncSession = Depends(get_session),
-#     user: UserOut = Depends(get_current_user),
-# ):
-#     note = await get_note_by_id(note_id, user.id, db)
-#     result = await db.execute(
-#         select(Note).where(Note.id.in_([n.id for n in note.backlinks]))
-#     )
-#     notes = result.scalars().all()
-#     return [{"id": n.id, "slug": n.slug, "title": n.title} for n in notes]
+@router.get('/{note_uuid}/linked_notes', response_model=list[NoteCrossLinkRead])
+async def get_note_referers(
+    note_uuid: UUID,
+    db: AsyncSession = Depends(get_session),
+    user: UserOut = Depends(get_current_user),
+    
+):
+    """
+    Returns a list of notes that the note with the given uuid refers to
+    """
+    note = await get_note_by("uuid", note_uuid, user.id, db)
+    if not note:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Note not found"
+        )
+    
+    referers = await db.execute(
+        select(CrossLink).\
+            where(
+                CrossLink.note_id == note.id,
+            )
+    )
+    return referers.scalars().all()
+
+@router.get('/{note_uuid}/tags', response_model=list[NoteTagAssociationRead])
+async def get_note_tags(
+    note_uuid: UUID,
+    db: AsyncSession = Depends(get_session),
+    user: UserOut = Depends(get_current_user),
+): 
+    """
+    Return a list of tags associated with a note
+    """
+    
+    note = await get_note_by("uuid", note_uuid, user.id, db)
+    if not note:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Note not found"
+        )
+    
+    tags = await db.execute(
+        select(note_tags).\
+            where(
+                note_tags.c.note_id == note.id,
+            )
+    )
+    return tags.scalars().all()

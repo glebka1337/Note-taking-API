@@ -50,7 +50,7 @@ class NoteRead(NoteBase):
 
 class NoteShallowRead(NoteBase):
     """
-    Model resonsible for reading a note without children notes, links and etc.
+    Model responsible for reading a note without children notes, links and etc.
     """
     id: int
     uuid: UUID
@@ -59,3 +59,17 @@ class NoteShallowRead(NoteBase):
     updated_at: datetime
     user_id: int
     model_config = ConfigDict(from_attributes=True)
+    
+class NoteCrossLinkRead(BaseModel):
+    """
+    Model responsible for reading a note without children notes, links and etc.
+    """
+    note_id: int
+    linked_note_id: int
+    title: str
+    model_config = ConfigDict(from_attributes=True)
+    
+class NoteTagAssociationRead(BaseModel):
+    note_id: int
+    tag_id: int
+    
