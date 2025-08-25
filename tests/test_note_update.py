@@ -1,4 +1,3 @@
-# test_note_update.py
 import uuid
 import pytest
 from httpx import AsyncClient

@@ -1,8 +1,6 @@
 from typing import AsyncGenerator
 from redis.asyncio import Redis, ConnectionPool
 from api.core.config import settings
-from contextlib import asynccontextmanager
-from fastapi import Depends
 
 _redis_pool: ConnectionPool | None = None
 

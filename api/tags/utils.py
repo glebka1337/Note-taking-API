@@ -1,5 +1,5 @@
 from typing import Any
-from fastapi import Depends, HTTPException, status
+from fastapi import HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from api.core.models import Tag
 from sqlalchemy import and_, select

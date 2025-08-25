@@ -1,13 +1,10 @@
-from fastapi import Depends, HTTPException, status
+from fastapi import HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, and_
-from api.core.models import Note, Tag
-from api.core.db import get_session
+from sqlalchemy import select
+from api.core.models import Note
 from typing import List, Optional
 import re
-from api.core.models import Note, CrossLink
-from sqlalchemy.orm import selectinload
-
+from api.core.models import Note
 from api.notes.schemas import NoteChildRead, NoteLinkRead, NoteRead, NoteTagRead
 
 

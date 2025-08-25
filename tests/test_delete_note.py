@@ -1,4 +1,3 @@
-from api.core.db import async_session
 import pytest
 from httpx import AsyncClient
 from sqlalchemy import select

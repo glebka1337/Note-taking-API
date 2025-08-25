@@ -1,5 +1,4 @@
-from typing import List, Set
-from uuid import uuid4
+from typing import Set
 import uuid
 from sqlalchemy import delete, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -68,7 +67,6 @@ class NoteService:
         - Creates new notes for any new children titles referenced.
         """
         
-        # 1. Получаем список всех существующих дочерних заметок
         existing_children_result = await self.db.execute(
             select(Note).where(Note.parent_id == self.note.id)
         )
@@ -77,11 +75,9 @@ class NoteService:
         existing_titles = {child.title for child in existing_children}
         parsed_titles = set(self.parsed_children)
         
-        # 2. Определяем заметки для удаления (те, что есть в БД, но нет в распарсенном контенте)
         titles_to_delete: Set[str] = existing_titles.difference(parsed_titles)
         
         if titles_to_delete:
-            # Получаем UUID заметок для удаления
             notes_to_delete_result = await self.db.execute(
                 select(Note.uuid).where(
                     Note.parent_id == self.note.id,
@@ -90,21 +86,17 @@ class NoteService:
             )
             note_uuids_to_delete = notes_to_delete_result.scalars().all()
             
-            # Удаляем заметки по UUID
             await self.db.execute(
                 delete(Note).where(Note.uuid.in_(note_uuids_to_delete))
             )
             
 
-        # 3. Находим "новые" дочерние заметки (те, что в контенте, но которых ещё нет в БД как дочерних)
         titles_to_create: Set[str] = parsed_titles.difference(existing_titles)
-        
-        # 4. Создаем новые заметки для каждого нового названия
+    
         for child_title in titles_to_create:
             new_title = child_title
             counter = 2
             
-            # Проверяем на уникальность заголовка
             while True:
                 existing_note_check = await self.db.execute(
                     select(Note).where(

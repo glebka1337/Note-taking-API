@@ -1,7 +1,6 @@
 from datetime import datetime
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from typing import List, Optional
 
 class TagBase(BaseModel):
     name: str

@@ -1,5 +1,4 @@
 from httpx import AsyncClient
-import asyncio
 from pprint import pprint as pp
 import pytest
 @pytest.mark.asyncio
