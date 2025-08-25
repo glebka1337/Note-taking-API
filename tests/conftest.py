@@ -1,6 +1,9 @@
+from typing import AsyncGenerator
 import pytest_asyncio
 from httpx import AsyncClient
-from api.core.db import Base, async_engine
+from api.core.db import async_session, async_engine
+from sqlalchemy.ext.asyncio import AsyncSession
+
 @pytest_asyncio.fixture
 async def async_client():
     async with AsyncClient(base_url="http://localhost:8000", timeout=1000) as client:
@@ -11,21 +14,19 @@ async def drop_dev_db(async_client: AsyncClient):
     print("✅ Development database dropped and recreated. Ready for tests.")
 
 @pytest_asyncio.fixture(scope="function", autouse=True)
-async def flush_db():
-    """
-    Flush DB before each test (drop + create tables).
-    Ensures clean state for every test.
-    """
-    async with AsyncClient(
-        base_url='http://localhost:8000',
-    ) as client:
-        await drop_dev_db(async_client=client)
-
+async def flush_dev_db(async_client: AsyncClient):
+    await drop_dev_db(async_client)
+    
 @pytest_asyncio.fixture
-async def access_token(async_client: AsyncClient) -> str:
+async def db_connection() -> AsyncGenerator[AsyncSession, None]:
+    async with async_engine.begin() as conn:
+        async with async_session(bind=conn) as session:
+            yield session
+
+async def _access_token(async_client: AsyncClient) -> str:
     """
     Create a user and return an access token for that user after logging in.
-    This fixture can be used in tests to authenticate requests.
+    This function can be used in tests to authenticate requests.
     """
 
     user_data = {
@@ -42,3 +43,7 @@ async def access_token(async_client: AsyncClient) -> str:
         "password": user_data["password"]
     })
     return resp.json()["access_token"]
+
+@pytest_asyncio.fixture
+async def access_token(async_client: AsyncClient) -> str:
+    return await _access_token(async_client)

@@ -47,7 +47,7 @@ async def test_create_note_with_relations(
     
     response = await async_client.post("/notes/", json=main_note_data, headers=headers)
     
-    assert response.status_code == 200
+    assert response.status_code == 201
     result = response.json()
 
     pp("✅ Test passed! Note created with:")

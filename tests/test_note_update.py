@@ -39,7 +39,7 @@ async def test_update_note_content_with_relations(
     }
     
     create_response = await async_client.post("/notes/", json=main_note_data, headers=headers)
-    assert create_response.status_code == 200
+    assert create_response.status_code == 201
     main_note = create_response.json()
     
     # 3. Update note content with new relations
@@ -112,7 +112,7 @@ async def test_update_note_title_only(
     }
     
     create_response = await async_client.post("/notes/", json=note_data, headers=headers)
-    assert create_response.status_code == 200
+    assert create_response.status_code == 201
     original_note = create_response.json()
     
     # Update only the title
@@ -173,7 +173,7 @@ async def test_update_note_duplicate_title(
         "parent_id": None
     }
     response1 = await async_client.post("/notes/", json=note1_data, headers=headers)
-    assert response1.status_code == 200
+    assert response1.status_code == 201
     
     # Create second note with different title
     note2_data = {
@@ -182,7 +182,7 @@ async def test_update_note_duplicate_title(
         "parent_id": None
     }
     response2 = await async_client.post("/notes/", json=note2_data, headers=headers)
-    assert response2.status_code == 200
+    assert response2.status_code == 201
     note2 = response2.json()
     
     # Try to update second note to have same title as first
@@ -214,7 +214,7 @@ async def test_update_note_empty_content(
     }
     
     create_response = await async_client.post("/notes/", json=note_data, headers=headers)
-    assert create_response.status_code == 200
+    assert create_response.status_code == 201
     original_note = create_response.json()
     
     # Verify it has relations initially

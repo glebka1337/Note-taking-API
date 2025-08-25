@@ -109,10 +109,13 @@ async def login_user(
     )
 
 async def get_current_user(
-    access_token: str = Header(..., alias="Authorization"),
+    access_token: str = Header(None, alias="Authorization"),
     redis_client: Redis = Depends(get_redis),
     db: AsyncSession = Depends(get_session)
 ) -> UserOut:
+    
+    if not access_token:
+        raise HTTPException(401, "Not authenticated")
     
     if not access_token.startswith("Bearer "):
         raise HTTPException(400, "Invalid token format")
