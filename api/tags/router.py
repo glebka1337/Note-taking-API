@@ -1,12 +1,14 @@
+from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import and_, select
 from api.auth.schemas import UserOut
 from api.core.db import get_session
-from api.core.models import Tag
+from api.core.models import Note, Tag, note_tags
+from api.notes.schemas import NoteShallowRead
 from api.tags.schemas import TagCreate, TagRead
 from typing import List
-from api.tags.utils import get_tag_by_id
+from api.tags.utils import get_tag_by
 from api.auth.services.auth_service import get_current_user
 
 router = APIRouter(
@@ -52,35 +54,58 @@ async def get_tags(
     return result.scalars().all()
 
 
-@router.get("/{tag_id}", response_model=TagRead)
+@router.get("/{tag_uuid}", response_model=TagRead)
 async def get_tag(
-    tag_id: int,
+    tag_uuid: UUID,
     db: AsyncSession = Depends(get_session),
     user: UserOut = Depends(get_current_user)
 ):
-    tag = await get_tag_by_id(tag_id, db, user_id=user.id)
+    tag = await get_tag_by("uuid", tag_uuid, user_id=user.id, db=db)
     return tag
 
-@router.put("/{tag_id}", response_model=TagRead)
+@router.put("/{tag_uuid}", response_model=TagRead)
 async def update_tag(
-    tag_id: int,
+    tag_uuid: UUID,
     tag_in: TagCreate,
     db: AsyncSession = Depends(get_session),
     user: UserOut = Depends(get_current_user)
 ):
-    tag = await get_tag_by_id(tag_id, db, user_id=user.id)
+    tag = await get_tag_by("uuid", tag_uuid, user_id=user.id, db=db)
     tag.name = tag_in.name
     await db.commit()
     await db.refresh(tag)
     return tag
 
-@router.delete("/{tag_id}", status_code=status.HTTP_200_OK)
+@router.delete("/{tag_uuid}", status_code=status.HTTP_200_OK)
 async def delete_tag(
-    tag_id: int,
+    tag_uuid: UUID,
     db: AsyncSession = Depends(get_session),
     user: UserOut = Depends(get_current_user)
 ):
-    tag = await get_tag_by_id(tag_id, db, user_id=user.id)
+    tag = await get_tag_by("uuid", tag_uuid, user_id=user.id, db=db)
     await db.delete(tag)
     await db.commit()
     return {"ok": True}
+
+
+@router.get('/{tag_uuid}/notes', response_model=list[NoteShallowRead])
+async def get_tag_notes(
+    tag_uuid: UUID,
+    db: AsyncSession = Depends(get_session),
+    user: UserOut = Depends(get_current_user),
+):
+    """
+    Returns a list of notes associated with the given tag uuid.
+    """
+    tag = await get_tag_by("uuid", tag_uuid, user_id=user.id, db=db)
+    if not tag:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Tag not found"
+        )
+    
+    notes_stmt = select(Note).join(note_tags).where(note_tags.c.tag_id == tag.id)
+    result = await db.execute(notes_stmt)
+    notes = result.scalars().all()
+    
+    return notes

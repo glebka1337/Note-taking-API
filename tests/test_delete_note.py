@@ -305,109 +305,93 @@ async def test_delete_full(
     
     assert note_referer_response_new.status_code == 200
     assert string_to_check in note_referer_response_new.json()["content"]
+
     
-    async with async_session() as session:
-        # we need o check if link was from root note to note_to_ref was deleted
-        
-        crosslink_in_db = await session.execute(
-            select(CrossLink).\
-            where(CrossLink.linked_note_id == note_to_ref_resp["id"],
-                  CrossLink.note_id == root_note_resp["id"]
-                  )
-        )
-        # crosslink_in_db = await db_connection.execute(
-        #     select(CrossLink).\
-        #     where(CrossLink.linked_note_id == note_to_ref_resp["id"],
-        #           CrossLink.note_id == root_note_resp["id"]
-        #           )
-        # )
-        
-        assert crosslink_in_db.scalars().all() == []
-        
-        # Check that child1 note and child2 were deleted from db
-        child1 = await async_client.get(
-            f"/notes/{child1_uuid}",
-            headers={"Authorization": f"Bearer {access_token}"}
-        )
-        
-        child2 = await async_client.get(
-            f"/notes/{child2_uuid}",
-            headers={"Authorization": f"Bearer {access_token}"}
-        )
-        
-        assert child1.status_code == 404
-        assert child2.status_code == 404
-        
-        # check that referer notes were changed too
-        referer_child1 = await async_client.get(
-            f"/notes/{referer_child1_resp['uuid']}",
-            headers={"Authorization": f"Bearer {access_token}"}
-        )
-        
-        referer_child2 = await async_client.get(
-            f"/notes/{referer_child2_resp['uuid']}",
-            headers={"Authorization": f"Bearer {access_token}"}
-        )
-        
-        assert f'DELETED: {child1_resp.json()["title"]}' in referer_child1.json()["content"]
-        assert f'DELETED: {child2_resp.json()["title"]}' in referer_child2.json()["content"]
-        
-        # check that note_to_ref_child1 and note_to_ref_child2 crosslinks were deleted
-        
-        cross_link_child1 = await session.execute(
-            select(CrossLink).\
-            where(CrossLink.linked_note_id == note_to_ref_child1_resp["id"],
-                CrossLink.note_id == child1_resp.json()["id"]
-                )
-        )
-        
-        assert cross_link_child1.scalars().all() == []
-        
-        cross_link_child2 = await session.execute(
-            select(CrossLink).\
-            where(CrossLink.linked_note_id == note_to_ref_child2_resp["id"],
-                CrossLink.note_id == child2_resp.json()["id"]
-                )
-        )
-        
-        assert cross_link_child2.scalars().all() == []
-        
-        # Check if referers to child1 and child2 were changed
-        
-        referer_child1 = await async_client.get(
-            f"/notes/{referer_child1_resp['uuid']}",
-            headers={"Authorization": f"Bearer {access_token}"}
-        )
-        
-        referer_child2 = await async_client.get(
-            f"/notes/{referer_child2_resp['uuid']}",
-            headers={"Authorization": f"Bearer {access_token}"}
-        )
-        
-        assert f'DELETED: {child1_resp.json()["title"]}' in referer_child1.json()["content"]
-        assert f'DELETED: {child2_resp.json()["title"]}' in referer_child2.json()["content"]
-        
-        # Check database note_tags were deleted
-            
-        result = await session.execute(
-            select(note_tags).where(note_tags.c.note_id == root_note_resp["id"])
-        )
+    # Check that we do not have any baclinks and linked notes
+    
+    back_links = await async_client.get(
+        f'/notes/{note_to_ref_resp['uuid']}/backlinks', # root note -> note_to_ref
+        headers={"Authorization": f"Bearer {access_token}"}
+    )
+    assert back_links.status_code == 200
+    assert len(back_links.json()) == 0
+    
+    # check that we do not have link referer -> root note
+    
+    referer_back_links = await async_client.get(
+        f'/notes/{referer_note_resp["uuid"]}/backlinks', # referer note -> root note
+        headers={"Authorization": f"Bearer {access_token}"}
+    )
+    assert referer_back_links.status_code == 200
+    assert len(referer_back_links.json()) == 0
+    
+    # Check that child1 note and child2 were deleted from db
+    child1 = await async_client.get(
+        f"/notes/{child1_uuid}",
+        headers={"Authorization": f"Bearer {access_token}"}
+    )
+    child2 = await async_client.get(
+        f"/notes/{child2_uuid}",
+        headers={"Authorization": f"Bearer {access_token}"}
+    )
+    assert child1.status_code == 404
+    assert child2.status_code == 404
 
-        rows = result.fetchall()
-        assert rows == []
-        
-        # Check child tags
-        
-        result = await session.execute(
-            select(note_tags).where(note_tags.c.note_id == child1_resp.json()["id"])
-        )
+    # check that referer notes were changed too
+    referer_child1 = await async_client.get(
+        f"/notes/{referer_child1_resp['uuid']}",
+        headers={"Authorization": f"Bearer {access_token}"}
+    )
+    referer_child2 = await async_client.get(
+        f"/notes/{referer_child2_resp['uuid']}",
+        headers={"Authorization": f"Bearer {access_token}"}
+    )
+    assert f'DELETED: {child1_resp.json()["title"]}' in referer_child1.json()["content"]
+    assert f'DELETED: {child2_resp.json()["title"]}' in referer_child2.json()["content"]
 
-        rows = result.fetchall()
-        assert rows == []
-        
-        result = await session.execute(
-            select(note_tags).where(note_tags.c.note_id == child2_resp.json()["id"])
-        )
+    # # Check that note_to_ref_child1 and note_to_ref_child2 crosslinks were deleted
+    
+    backlinks_child1_response = await async_client.get(
+        f"/notes/{note_to_ref_child1_resp['uuid']}/backlinks",
+        headers={"Authorization": f"Bearer {access_token}"}
+    )
+    assert backlinks_child1_response.status_code == 200
+    assert len(backlinks_child1_response.json()) == 0
+    
+    backlinks_child2_response = await async_client.get(
+        f"/notes/{note_to_ref_child2_resp['uuid']}/backlinks",
+        headers={"Authorization": f"Bearer {access_token}"}
+    )
+    assert backlinks_child2_response.status_code == 200
+    assert len(backlinks_child2_response.json()) == 0
+   
+    # Check database note_tags were deleted
+    
+    root_tag_uuid = root_note_resp["tags_read"][0]["uuid"]
 
-        rows = result.fetchall()
-        assert rows == []
+    root_tag_response = await async_client.get(
+        f"/tags/{root_tag_uuid}/notes",
+        headers={"Authorization": f"Bearer {access_token}"}
+    )
+    # should be empty
+    assert root_tag_response.status_code == 200
+    assert len(root_tag_response.json()) == 0
+    
+    child1_tag_uuid = child1_resp.json()["tags_read"][0]["uuid"]
+    
+    child1_tags_response = await async_client.get(
+        f"/tags/{child1_tag_uuid}/notes",
+        headers={"Authorization": f"Bearer {access_token}"}
+    )
+    assert child1_tags_response.status_code == 200
+    assert len(child1_tags_response.json()) == 0
+
+    child2_tag_uuid = child2_resp.json()["tags_read"][0]["uuid"]
+    
+    child2_tags_response = await async_client.get(
+        f"/tags/{child2_tag_uuid}/notes",
+        headers={"Authorization": f"Bearer {access_token}"}
+    )
+    assert child2_tags_response.status_code == 200
+    assert len(child2_tags_response.json()) == 0
+    
