@@ -4,7 +4,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.dialects.postgresql import UUID as PG_UUID
 from api.core.db import Base
 from sqlalchemy import Table
-from uuid import uuid4, UUID
+import uuid as pyuuid
 
 class User(Base):
     __tablename__ = "users"
@@ -33,11 +33,11 @@ class CrossLink(Base):
 class Note(Base):
     __tablename__ = "notes"
     id: Mapped[int] = mapped_column(primary_key=True)
-    uuid: Mapped[UUID] = mapped_column(
-        PG_UUID(as_uuid=True), 
-        default=uuid4,
+    uuid: Mapped[pyuuid.UUID] = mapped_column(  
+        PG_UUID(as_uuid=True),
+        default=pyuuid.uuid4,
         unique=True,
-        nullable=False
+        nullable=False,
     )
     title: Mapped[str] = mapped_column(String(100), nullable=False) 
     content: Mapped[str] = mapped_column(Text, nullable=False)
@@ -77,11 +77,11 @@ class Tag(Base):
     __table_args__ = (UniqueConstraint("user_id", "name", name="uq_tag_user_name"),)
     
     id: Mapped[int] = mapped_column(primary_key=True)
-    uuid: Mapped[UUID] = mapped_column(
-        PG_UUID(as_uuid=True), 
-        default=uuid4,
+    uuid: Mapped[pyuuid.UUID] = mapped_column(   
+        PG_UUID(as_uuid=True),
+        default=pyuuid.uuid4,
         unique=True,
-        nullable=False
+        nullable=False,
     )
     name: Mapped[str] = mapped_column(String(50), nullable=False) 
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
