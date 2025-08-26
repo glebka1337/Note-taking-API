@@ -4,7 +4,8 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.dialects.postgresql import UUID as PG_UUID
 from api.core.db import Base
 from sqlalchemy import Table
-import uuid as pyuuid
+from uuid import UUID as PYUUID
+from uuid import uuid4
 
 class User(Base):
     __tablename__ = "users"
@@ -33,9 +34,9 @@ class CrossLink(Base):
 class Note(Base):
     __tablename__ = "notes"
     id: Mapped[int] = mapped_column(primary_key=True)
-    uuid: Mapped[pyuuid.UUID] = mapped_column(  
+    uuid: Mapped[PYUUID] = mapped_column(  
         PG_UUID(as_uuid=True),
-        default=pyuuid.uuid4,
+        default=uuid4,
         unique=True,
         nullable=False,
     )
@@ -77,9 +78,9 @@ class Tag(Base):
     __table_args__ = (UniqueConstraint("user_id", "name", name="uq_tag_user_name"),)
     
     id: Mapped[int] = mapped_column(primary_key=True)
-    uuid: Mapped[pyuuid.UUID] = mapped_column(   
+    uuid: Mapped[PYUUID] = mapped_column(   
         PG_UUID(as_uuid=True),
-        default=pyuuid.uuid4,
+        default=uuid4,
         unique=True,
         nullable=False,
     )

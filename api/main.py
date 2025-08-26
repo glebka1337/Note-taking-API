@@ -1,10 +1,9 @@
-from fastapi import FastAPI, Request, status
+from fastapi import FastAPI, status
 from contextlib import asynccontextmanager
 from api.core.db import Base, async_engine
 from api.notes.router import router as notes_router
 from api.tags.router import router as tags_router
 from api.auth.router import router as auth_router
-import time
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):

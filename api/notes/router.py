@@ -1,9 +1,9 @@
 from datetime import datetime, timezone
 from typing import Annotated, Optional
-from uuid import uuid4
+from uuid import uuid4, UUID
 from fastapi import APIRouter, Depends, status, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import UUID, select
+from sqlalchemy import select
 from api.auth.schemas import UserOut
 from api.auth.services.auth_service import get_current_user
 from api.core.db import get_session

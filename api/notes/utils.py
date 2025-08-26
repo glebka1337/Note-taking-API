@@ -4,7 +4,6 @@ from sqlalchemy import select
 from api.core.models import Note
 from typing import List, Optional
 import re
-from api.core.models import Note
 from api.notes.schemas import NoteChildRead, NoteLinkRead, NoteRead, NoteTagRead
 
 
