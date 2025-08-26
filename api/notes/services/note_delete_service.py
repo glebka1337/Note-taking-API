@@ -1,7 +1,6 @@
 import re
 from uuid import UUID
 from sqlalchemy.ext.asyncio import AsyncSession
-from fastapi import HTTPException, status
 from sqlalchemy import delete, select
 from api.core.models import Note, CrossLink, note_tags
 from sqlalchemy.orm import selectinload
