@@ -44,7 +44,7 @@ To get the project up and running locally, you only need to have **Docker** and 
 1.  **Clone the repository**:
 
     ```bash
-    https://github.com/glebka1337/Note-taking-API.git
+    git clone https://github.com/glebka1337/Note-taking-API.git
     cd Note-taking-API
     ```
 
