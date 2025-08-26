@@ -40,7 +40,15 @@ jobs:
 
       - name: Start test environment
         run: docker compose -f docker-compose.yml --env-file .env up -d --build --force-recreate --wait
-        
+
+      - name: Wait for web service
+        run: |
+          timeout 60s bash -c '
+            until curl -f http://localhost:8000/docs; do
+              echo "Waiting for web service..."
+              sleep 5
+            done
+          '
       - name: Show web service logs if it failed to start
         if: failure()
         run: docker compose -f docker-compose.yml logs web
