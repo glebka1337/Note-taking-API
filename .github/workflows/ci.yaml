@@ -40,7 +40,11 @@ jobs:
 
       - name: Start test environment
         run: docker compose -f docker-compose.yml --env-file .env up -d --build --force-recreate --wait
-          
+        
+      - name: Show web service logs if it failed to start
+        if: failure()
+        run: docker compose -f docker-compose.yml logs web
+      
       - name: Run tests with pytest
         run: docker exec web pytest -v /app/tests
         env:
