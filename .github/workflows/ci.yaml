@@ -50,6 +50,14 @@ jobs:
               sleep 5
             done
           '
+      - name: Wait for web service
+        run: |
+          timeout 60s bash -c '
+            until curl -s -f http://localhost:8000/health; do
+              echo "Waiting for web service..."
+              sleep 5
+            done
+          '
 
       - name: Run tests with pytest
         run: docker exec web pytest -v /app/tests

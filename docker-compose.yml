@@ -30,6 +30,11 @@ services:
       - .env
     ports:
       - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - ./entrypoint.sh:/app/entrypoint.sh
     command: sh /app/entrypoint.sh
