@@ -39,26 +39,8 @@ jobs:
         run: docker build --no-cache -t fastapi-docker .
 
       - name: Start test environment
-        run: docker compose -f docker-compose.yml --env-file .env up -d --build --force-recreate
-
-      - name: Wait for DB
-        run: |
-          sleep 10
-          timeout 60s bash -c '
-            until docker exec db pg_isready -U dev_user -d dev_db; do
-              echo "Waiting for PostgreSQL..."
-              sleep 5
-            done
-          '
-      - name: Wait for web service
-        run: |
-          timeout 60s bash -c '
-            until curl -s -f http://localhost:8000/health; do
-              echo "Waiting for web service..."
-              sleep 5
-            done
-          '
-
+        run: docker compose -f docker-compose.yml --env-file .env up -d --build --force-recreate --wait
+          
       - name: Run tests with pytest
         run: docker exec web pytest -v /app/tests
         env:
