@@ -171,9 +171,6 @@ async def update_note(
             detail=f"Failed to update note: {str(e)}"
         )
 
-########################
-#! Will be added later #
-########################
 @router.delete("/{note_uuid}")
 async def delete_note(
     note_uuid: UUID,
